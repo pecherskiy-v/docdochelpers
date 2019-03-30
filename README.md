@@ -1,6 +1,7 @@
-# Helper for API DocDoc 1.0.6 
+# Helper for API DocDoc 1.0.9 
 
 [Official API Documentation Version 1.0.6](https://pk.docdoc.ru/docs/partner-api.pdf)
+[Official API Documentation Version 1.0.9](https://dd109.docs.apiary.io/#reference/0/4//doctor/list)
 
 ### Install
 

@@ -1,15 +1,21 @@
 {
-  "name": "leyhmann/docdochelpers",
+  "name": "pecherskiy-v/docdochelpers",
   "description": "Simple helper for use docdoc.ru partner API",
   "keywords": [
     "docdoc"
   ],
+  "version": "1.1.1",
   "homepage": "https://github.com/leyhmann/docdoc",
   "license": "MIT",
   "authors": [
     {
       "name": "Leyhmann Andrey",
       "email": "leyhmann.a.a@gmail.com"
+    },
+    {
+      "name": "Pecherskiy Valeriy",
+      "email": "pecherskiy.v@gmail.com",
+      "homepage": "https://github.com/pecherskiy-v/"
     }
   ],
   "require": {

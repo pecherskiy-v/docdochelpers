@@ -31,8 +31,14 @@ class Client implements ClientInterface
     /**
      * @var string
      */
-    protected $apiUrl = 'https://back.docdoc.ru/api/rest/1.0.6/json/';
+    protected $apiUrl = '';
 
+    protected $serverUrl = [
+        'api_1.0.6' => 'https://api.docdoc.ru/public/rest/1.0.6/json/',
+        'production' => 'https://api.docdoc.ru/public/rest/1.0.9/',
+        'mock_server' => 'https://private-anon-5e031e7a1a-dd109.apiary-mock.com/public/rest/1.0.9',
+        'debugging_proxy' => 'https://private-anon-5e031e7a1a-dd109.apiary-proxy.com/public/rest/1.0.9'
+    ];
     /**
      * @var string
      */
@@ -43,12 +49,13 @@ class Client implements ClientInterface
      * @param string $username
      * @param string $password
      */
-    public function __construct(string $username, string $password)
+    public function __construct(string $username, string $password, $serverType = 'production')
     {
         $client = new FileGetContents();
         $this->browser = new Browser($client, new Psr17Factory());
         $auth = new BasicAuthMiddleware($username, $password);
         $this->browser->addMiddleware($auth);
+        $this->apiUrl = $this->serverUrl[$serverType];
     }
 
     /**
