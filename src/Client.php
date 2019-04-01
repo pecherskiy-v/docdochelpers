@@ -49,7 +49,7 @@ class Client implements ClientInterface
      * @param string $username
      * @param string $password
      */
-    public function __construct(string $username, string $password, $serverType = 'production')
+    public function __construct(string $username, string $password, string $serverType = 'production')
     {
         $client = new FileGetContents();
         $this->browser = new Browser($client, new Psr17Factory());

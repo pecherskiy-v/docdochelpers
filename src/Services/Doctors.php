@@ -116,14 +116,22 @@ class Doctors extends AbstractCategory
      * Get a list of special values
      *
      * @param int $cityID
+     * @param int $onlySimple
+     * onlySimple Уникальный специализации.
+     * 0 - не обращать внимание на уникальность специальности, выбирать с двойными
+     * 1 - получать только уникальные специальности (стоит по умолчанию)
      * @return mixed
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    public function getSpecialities(int $cityID)
+    public function getSpecialities(int $cityID, int $onlySimple = 1)
     {
-        return $this->getOnly("speciality/city/{$cityID}/", 'SpecList');
+        return $this->getOnly("speciality/city/{$cityID}/onlySimple/{$onlySimple}", 'SpecList');
+    }
+    public function getAllSpecialities()
+    {
+        return $this->getOnly("speciality", 'SpecList');
     }
 
     /**
