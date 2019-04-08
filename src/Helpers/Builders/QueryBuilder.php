@@ -43,10 +43,15 @@ abstract class QueryBuilder
     {
         $queryString = '';
         foreach (static::GET_NOT_ALLOWED as $key) {
-            if (!empty($this->$key)) {
-                $queryString .= "{$key}/{$this->$key}/";
+            if (!empty($this->$key) || in_array($key, static::REQUIRED_FIELDS)) {
+                if (\is_array($this->$key)) {
+                    $queryString .= "{$key}/" . \implode(',', $this->$key) . '/';
+                } else {
+                    $queryString .= "{$key}/{$this->$key}/";
+                }
             }
         }
+
         return $queryString . '?' . \http_build_query($this->getQuery());
     }
 
@@ -70,6 +75,7 @@ abstract class QueryBuilder
                 }
             }
         }
+
         return $query;
     }
 

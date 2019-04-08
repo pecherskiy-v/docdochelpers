@@ -4,12 +4,25 @@
 
 #### [Official API Documentation Version 1.0.9](https://dd109.docs.apiary.io/#reference/0/4//doctor/list)
 
+для клиник версия 1.0.6 более не поддерживаеться
+### Example:
+```
+    $client = new Client($this->docdoc['login'], $this->docdoc['password'], 'production');
+    $clinics = new Clinics($client);
+    $result = $clinics->getClinics(
+        (new ClinicsQueryBuilder())
+            ->setStart(8)
+            ->setCount(1)
+            ->setCity(1)
+    );
+```
+
 ### Install
 
 Install by [composer](http://getcomposer.org/download/).
 
 ```
-composer require leyhmann/docdochelpers
+composer require pecherskiy-v/docdochelpers
 ```
 
 ### Example

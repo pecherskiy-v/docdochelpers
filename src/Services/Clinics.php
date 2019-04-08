@@ -87,17 +87,16 @@ class Clinics extends AbstractCategory
     public function count(int $cityID, array $clinicType = [], array $stations = [], int $speciality = null): array
     {
         $this->client->setMethod("clinic/count/city/$cityID/?" . \http_build_query([
-                'clinicType' => \implode(',', $clinicType),
-                'stations' => \implode(',', $stations),
-                'speciality' => $speciality,
-            ]));
+            'clinicType' => \implode(',', $clinicType),
+            'stations' => \implode(',', $stations),
+            'speciality' => $speciality,
+        ]));
         $response = $this->client->getJson();
         if (isset($response['Total'])) {
             return $response;
         }
         throw new ResponseError($response['message'] ?? 'Response is error');
     }
-
 
     /**
      * Get a list of images of the clinic

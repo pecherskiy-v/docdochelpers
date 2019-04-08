@@ -35,7 +35,7 @@ class Client implements ClientInterface
 
     protected $serverUrl = [
         'api_1.0.6' => 'https://api.docdoc.ru/public/rest/1.0.6/json/',
-        'production' => 'https://api.docdoc.ru/public/rest/1.0.9/',
+        'production' => 'https://api.docdoc.ru/public/rest/1.0.9',
         'mock_server' => 'https://private-anon-5e031e7a1a-dd109.apiary-mock.com/public/rest/1.0.9',
         'debugging_proxy' => 'https://private-anon-5e031e7a1a-dd109.apiary-proxy.com/public/rest/1.0.9'
     ];
@@ -78,6 +78,7 @@ class Client implements ClientInterface
     public function get(Headers $headers = null): ResponseInterface
     {
         $headersArr = $headers ? $headers->toArray() : [];
+
         return $this->handleResponse($this->browser->get($this->getRequestUrl(), $headersArr));
     }
 
@@ -91,6 +92,7 @@ class Client implements ClientInterface
     public function post(Headers $headers = null, ?string $body = ''): ResponseInterface
     {
         $headersArr = $headers ? $headers->toArray() : [];
+
         return $this->handleResponse($this->browser->post($this->getRequestUrl(), $headersArr, $body));
     }
 
@@ -113,6 +115,7 @@ class Client implements ClientInterface
         if ($this->method === null) {
             throw new MethodIsNotSet('It is necessary to establish a method for accessing api');
         }
+
         return $this->apiUrl . $this->method;
     }
 
