@@ -12,7 +12,6 @@ use Leyhmann\DocDoc\Exceptions\ResponseError;
  */
 class Locations extends AbstractCategory
 {
-
     /**
      * @return mixed
      * @throws ResponseError
@@ -21,7 +20,7 @@ class Locations extends AbstractCategory
      */
     public function getCities()
     {
-        return $this->getOnly('city', 'CityList');
+        return $this->getOnly('/city', 'CityList');
     }
 
     /**
@@ -57,17 +56,17 @@ class Locations extends AbstractCategory
      *
      * @param int|null $cityId
      * @param int|null $areaId
-     * @return array
+     * @return array|object
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    public function getDistricts(int $cityId = null, int $areaId = null): array
+    public function getDistricts(int $cityId = null, int $areaId = null)
     {
         return $this->getOnly('district/?' . \http_build_query([
-                'city' => $cityId,
-                'area' => $areaId,
-            ]), 'DistrictList');
+            'city' => $cityId,
+            'area' => $areaId,
+        ]), 'DistrictList');
     }
 
     /**
@@ -100,12 +99,12 @@ class Locations extends AbstractCategory
      *
      * @param int $districtID
      * @param int $limit
-     * @return array
+     * @return array|object
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    public function nearDistricts(int $districtID, int $limit = 50): array
+    public function nearDistricts(int $districtID, int $limit = 50)
     {
         return $this->getOnly("nearDistricts/id/{$districtID}/limit/{$limit}", 'DistrictList');
     }
@@ -114,12 +113,12 @@ class Locations extends AbstractCategory
      * Get a list of the nearest metro stations
      *
      * @param int $stationID
-     * @return array
+     * @return array|object
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    public function nearestStation(int $stationID): array
+    public function nearestStation(int $stationID)
     {
         return \array_map(function (array $station) {
             return new Station($station);
@@ -142,12 +141,12 @@ class Locations extends AbstractCategory
     }
 
     /**
-     * @return array
+     * @return array|object
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    public function getMoscowArea(): array
+    public function getMoscowArea()
     {
         return $this->getOnly('area', 'AreaList');
     }

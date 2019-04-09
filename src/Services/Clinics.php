@@ -13,13 +13,13 @@ class Clinics extends AbstractCategory
 {
     /**
      * @param ClinicsQueryBuilder $builder
-     * @return array
+     * @return array|object
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\RequiredFieldIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    public function getClinics(ClinicsQueryBuilder $builder): array
+    public function getClinics(ClinicsQueryBuilder $builder)
     {
         return $this->get("/clinic/list/{$builder->getQueryString()}", 'ClinicList');
     }
@@ -28,12 +28,12 @@ class Clinics extends AbstractCategory
      * Get full information about the clinic
      *
      * @param int $id
-     * @return array
+     * @return array|object
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    public function find(int $id): array
+    public function find(int $id)
     {
         return $this->getFirst("clinic/{$id}", 'Clinic');
     }
@@ -43,12 +43,12 @@ class Clinics extends AbstractCategory
      *
      * @param string $alias
      * @param int|null $city
-     * @return array
+     * @return array|object
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    public function findByAlias(string $alias, int $city = null): array
+    public function findByAlias(string $alias, int $city = null)
     {
         return $this->getFirst(
             "clinic/by/alias/{$alias}/?" . \http_build_query([
@@ -62,12 +62,12 @@ class Clinics extends AbstractCategory
      * Get reviews about the doctor
      *
      * @param int $id
-     * @return array
+     * @return array|object
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    public function getReviews(int $id): array
+    public function getReviews(int $id)
     {
         return $this->getOnly("review/clinic/{$id}", 'ReviewList');
     }
@@ -79,12 +79,12 @@ class Clinics extends AbstractCategory
      * @param array $clinicType
      * @param array $stations
      * @param int|null $speciality
-     * @return array
+     * @return array|object
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    public function count(int $cityID, array $clinicType = [], array $stations = [], int $speciality = null): array
+    public function count(int $cityID, array $clinicType = [], array $stations = [], int $speciality = null)
     {
         $this->client->setMethod("clinic/count/city/$cityID/?" . \http_build_query([
             'clinicType' => \implode(',', $clinicType),
@@ -102,23 +102,23 @@ class Clinics extends AbstractCategory
      * Get a list of images of the clinic
      *
      * @param int $clinicID
-     * @return array
+     * @return array|object
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    public function getClinicImages(int $clinicID): array
+    public function getClinicImages(int $clinicID)
     {
         return $this->getOnly("clinic/gallery/{$clinicID}/", 'ImageList');
     }
 
     /**
-     * @return array
+     * @return array|object
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    public function getDiagnostics(): array
+    public function getDiagnostics()
     {
         return $this->getOnly('diagnostic', 'DiagnosticList');
     }

@@ -6,8 +6,11 @@
 
 для клиник версия 1.0.6 более не поддерживаеться
 ### Example:
+опция клиента
+assoc=false - вернет объект (установлена по умолчанию)
+assoc=true - вернет ассоциативный массив
 ```
-    $client = new Client($this->docdoc['login'], $this->docdoc['password'], 'production');
+    $client = new Client($this->docdoc['login'], $this->docdoc['password'], 'production', {assoc=false});
     $clinics = new Clinics($client);
     $result = $clinics->getClinics(
         (new ClinicsQueryBuilder())

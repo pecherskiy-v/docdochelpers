@@ -45,17 +45,27 @@ class Client implements ClientInterface
     protected $method;
 
     /**
+     * @var bool
+     */
+    protected $assoc;
+
+    /**
      * Client constructor.
      * @param string $username
      * @param string $password
      */
-    public function __construct(string $username, string $password, string $serverType = 'production')
-    {
+    public function __construct(
+        string $username,
+        string $password,
+        string $serverType = 'production',
+        bool $assoc = false
+    ) {
         $client = new FileGetContents();
         $this->browser = new Browser($client, new Psr17Factory());
         $auth = new BasicAuthMiddleware($username, $password);
         $this->browser->addMiddleware($auth);
         $this->apiUrl = $this->serverUrl[$serverType];
+        $this->assoc = $assoc;
     }
 
     /**
@@ -97,13 +107,13 @@ class Client implements ClientInterface
     }
 
     /**
-     * @return array
+     * @return array|object
      * @throws MethodIsNotSet
      * @throws Unauthorized
      */
-    public function getJson(): array
+    public function getJson()
     {
-        return \json_decode($this->get()->getBody()->getContents(), true);
+        return \json_decode($this->get()->getBody()->getContents(), $this->assoc);
     }
 
     /**

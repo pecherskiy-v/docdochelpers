@@ -33,9 +33,9 @@ interface ClientInterface
     public function post(Headers $headers = null, ?string $body = ''): ResponseInterface;
 
     /**
-     * @return array
+     * @return array|object
      * @throws MethodIsNotSet
      * @throws Unauthorized
      */
-    public function getJson(): array;
+    public function getJson();
 }

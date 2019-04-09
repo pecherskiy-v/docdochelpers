@@ -22,14 +22,14 @@ class Doctors extends AbstractCategory
      * @param int $cityID
      * @param int $count
      * @param int $start
-     * @return array
+     * @return array|object
      * @throws CityNumberIncorrect
      * @throws MaximumCount
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    public function all(int $cityID, int $count = 500, int $start = 1): array
+    public function all(int $cityID, int $count = 500, int $start = 1)
     {
         if ($count > 500) {
             throw new MaximumCount('Maximum allowed count is 500');
@@ -42,6 +42,7 @@ class Doctors extends AbstractCategory
         if (isset($response['status']) && $response['status'] === 'error') {
             throw new ResponseError($response['message'] ?? 'Bad response');
         }
+
         return $response;
     }
 
@@ -49,13 +50,13 @@ class Doctors extends AbstractCategory
      * Get a list of doctors
      *
      * @param DoctorsQueryBuilder $builder
-     * @return array
+     * @return array|object
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\RequiredFieldIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    public function getDoctors(DoctorsQueryBuilder $builder): array
+    public function getDoctors(DoctorsQueryBuilder $builder)
     {
         return $this->get("/doctor/list/{$builder->getQueryString()}", 'DoctorList');
     }
@@ -75,10 +76,10 @@ class Doctors extends AbstractCategory
     public function find(int $id, int $city = null, bool $withSlots = null, int $slotDays = null)
     {
         return $this->getFirst("doctor/{$id}/?" . \http_build_query([
-                'city' => $city,
-                'withSlots' => $withSlots !== null ? (int)$withSlots : null,
-                'slotDays' => $slotDays,
-            ]), 'Doctor');
+            'city' => $city,
+            'withSlots' => $withSlots !== null ? (int)$withSlots : null,
+            'slotDays' => $slotDays,
+        ]), 'Doctor');
     }
 
     /**
@@ -94,20 +95,20 @@ class Doctors extends AbstractCategory
     public function findByAlias(string $alias, int $city = null)
     {
         return $this->getFirst("doctor/by/alias/{$alias}/?" . \http_build_query([
-                'city' => $city,
-            ]), 'Doctor');
+            'city' => $city,
+        ]), 'Doctor');
     }
 
     /**
      * Get reviews about the doctor
      *
      * @param int $id
-     * @return array
+     * @return array|object
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    public function getReview(int $id): array
+    public function getReview(int $id)
     {
         return $this->getOnly("review/doctor/{$id}", 'ReviewList');
     }
@@ -127,11 +128,12 @@ class Doctors extends AbstractCategory
      */
     public function getSpecialities(int $cityID, int $onlySimple = 1)
     {
-        return $this->getOnly("speciality/city/{$cityID}/onlySimple/{$onlySimple}", 'SpecList');
+        return $this->getOnly("/speciality/city/{$cityID}/onlySimple/{$onlySimple}", 'SpecList');
     }
+
     public function getAllSpecialities()
     {
-        return $this->getOnly("speciality", 'SpecList');
+        return $this->getOnly('/speciality', 'SpecList');
     }
 
     /**
@@ -155,18 +157,19 @@ class Doctors extends AbstractCategory
      * @param \DateTime $startDate
      * @param \DateTime $finishDate
      * @param string $type
-     * @return array
+     * @return array|object
      * @throws InvalidArgument
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    public function getSlots(int $id, int $clinicId, \DateTime $startDate, \DateTime $finishDate, $type = 'doctor'): array
+    public function getSlots(int $id, int $clinicId, \DateTime $startDate, \DateTime $finishDate, $type = 'doctor')
     {
         if ($type !== 'doctor' && $type !== 'diagnostic') {
             throw new InvalidArgument('For the argument "type" valid parameters: doctor and diagnosis');
         }
-        return $this->getOnly("slot/list/{$type}/{$id}/clinic/{$clinicId}/".
+
+        return $this->getOnly("slot/list/{$type}/{$id}/clinic/{$clinicId}/" .
             "from/{$startDate->format('Y-m-d')}/to/{$finishDate->format('Y-m-d')}", 'SlotList');
     }
 }

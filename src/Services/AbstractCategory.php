@@ -28,17 +28,23 @@ abstract class AbstractCategory
     /**
      * @param string $query
      * @param string $key
-     * @return array
+     * @return array|object
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    protected function get(string $query, string $key): array
+    protected function get(string $query, string $key)
     {
         $this->client->setMethod($query);
         $response = $this->client->getJson();
-        if (isset($response[$key])) {
-            return $response;
+        if (\is_array($response)) {
+            if (isset($response[$key])) {
+                return $response;
+            }
+        } else {
+            if (isset($response->$key)) {
+                return $response;
+            }
         }
         throw new ResponseError($response['message'] ?? 'Response is error');
     }
@@ -46,14 +52,19 @@ abstract class AbstractCategory
     /**
      * @param string $query
      * @param string $key
-     * @return array
+     * @return array|object
      * @throws ResponseError
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    protected function getOnly(string $query, string $key): array
+    protected function getOnly(string $query, string $key)
     {
-        return $this->get($query, $key)[$key];
+        $get = $this->get($query, $key);
+        if (\is_array($get)) {
+            return $get[$key];
+        } else {
+            return $get->$key;
+        }
     }
 
     /**
