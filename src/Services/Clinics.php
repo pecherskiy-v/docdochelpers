@@ -35,7 +35,7 @@ class Clinics extends AbstractCategory
      */
     public function find(int $id)
     {
-        return $this->getFirst("clinic/{$id}", 'Clinic');
+        return $this->getFirst("/clinic/{$id}", 'Clinic');
     }
 
     /**
@@ -51,7 +51,7 @@ class Clinics extends AbstractCategory
     public function findByAlias(string $alias, int $city = null)
     {
         return $this->getFirst(
-            "clinic/by/alias/{$alias}/?" . \http_build_query([
+            "/clinic/by/alias/{$alias}/?" . \http_build_query([
                 'city' => $city,
             ]),
             'Center'
@@ -69,7 +69,7 @@ class Clinics extends AbstractCategory
      */
     public function getReviews(int $id)
     {
-        return $this->getOnly("review/clinic/{$id}", 'ReviewList');
+        return $this->getOnly("/review/clinic/{$id}", 'ReviewList');
     }
 
     /**
@@ -86,7 +86,7 @@ class Clinics extends AbstractCategory
      */
     public function count(int $cityID, array $clinicType = [], array $stations = [], int $speciality = null)
     {
-        $this->client->setMethod("clinic/count/city/$cityID/?" . \http_build_query([
+        $this->client->setMethod("/clinic/count/city/$cityID/?" . \http_build_query([
             'clinicType' => \implode(',', $clinicType),
             'stations' => \implode(',', $stations),
             'speciality' => $speciality,
@@ -109,7 +109,7 @@ class Clinics extends AbstractCategory
      */
     public function getClinicImages(int $clinicID)
     {
-        return $this->getOnly("clinic/gallery/{$clinicID}/", 'ImageList');
+        return $this->getOnly("/clinic/gallery/{$clinicID}/", 'ImageList');
     }
 
     /**
@@ -120,6 +120,6 @@ class Clinics extends AbstractCategory
      */
     public function getDiagnostics()
     {
-        return $this->getOnly('diagnostic', 'DiagnosticList');
+        return $this->getOnly('/diagnostic', 'DiagnosticList');
     }
 }

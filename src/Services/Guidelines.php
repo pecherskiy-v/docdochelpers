@@ -23,7 +23,7 @@ class Guidelines extends AbstractCategory
      */
     public function getGuidelines(int $sector = null, int $service = null, int $diagnostic = null): array
     {
-        return $this->getOnly('guidelines/?' . \http_build_query([
+        return $this->getOnly('/guidelines/?' . \http_build_query([
                 'sector' => $sector,
                 'service' => $service,
                 'diagnostic' => $diagnostic,

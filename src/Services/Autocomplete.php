@@ -23,7 +23,7 @@ class Autocomplete extends AbstractCategory
     {
         $without = (int)$withoutClinics;
         return $this->getOnly(
-            "autocomplete/city/{$cityId}/withoutClinics/{$without}?search={$search}",
+            "/autocomplete/city/{$cityId}/withoutClinics/{$without}?search={$search}",
             'Suggestions'
         );
     }

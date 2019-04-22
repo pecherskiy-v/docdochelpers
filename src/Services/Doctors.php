@@ -34,7 +34,7 @@ class Doctors extends AbstractCategory
         if ($count > 500) {
             throw new MaximumCount('Maximum allowed count is 500');
         }
-        $this->client->setMethod("doctor/list/start/{$start}/count/{$count}/city/{$cityID}/");
+        $this->client->setMethod("/doctor/list/start/{$start}/count/{$count}/city/{$cityID}/");
         $response = $this->client->getJson();
         if ((int)$response['Total'] === 0) {
             throw new CityNumberIncorrect('Invalid city id passed');
@@ -75,7 +75,7 @@ class Doctors extends AbstractCategory
      */
     public function find(int $id, int $city = null, bool $withSlots = null, int $slotDays = null)
     {
-        return $this->getFirst("doctor/{$id}/?" . \http_build_query([
+        return $this->getFirst("/doctor/{$id}/?" . \http_build_query([
             'city' => $city,
             'withSlots' => $withSlots !== null ? (int)$withSlots : null,
             'slotDays' => $slotDays,
@@ -94,7 +94,7 @@ class Doctors extends AbstractCategory
      */
     public function findByAlias(string $alias, int $city = null)
     {
-        return $this->getFirst("doctor/by/alias/{$alias}/?" . \http_build_query([
+        return $this->getFirst("/doctor/by/alias/{$alias}/?" . \http_build_query([
             'city' => $city,
         ]), 'Doctor');
     }
@@ -110,7 +110,7 @@ class Doctors extends AbstractCategory
      */
     public function getReview(int $id)
     {
-        return $this->getOnly("review/doctor/{$id}", 'ReviewList');
+        return $this->getOnly("/review/doctor/{$id}", 'ReviewList');
     }
 
     /**
@@ -146,7 +146,7 @@ class Doctors extends AbstractCategory
      */
     public function getServices()
     {
-        return $this->getOnly('service/list', 'ServiceList');
+        return $this->getOnly('/service/list', 'ServiceList');
     }
 
     /**
@@ -169,7 +169,7 @@ class Doctors extends AbstractCategory
             throw new InvalidArgument('For the argument "type" valid parameters: doctor and diagnosis');
         }
 
-        return $this->getOnly("slot/list/{$type}/{$id}/clinic/{$clinicId}/" .
+        return $this->getOnly("/slot/list/{$type}/{$id}/clinic/{$clinicId}/" .
             "from/{$startDate->format('Y-m-d')}/to/{$finishDate->format('Y-m-d')}", 'SlotList');
     }
 }

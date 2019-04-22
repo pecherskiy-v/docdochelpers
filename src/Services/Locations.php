@@ -34,7 +34,7 @@ class Locations extends AbstractCategory
      */
     public function getStreets(int $cityID)
     {
-        return $this->getOnly("street/city/{$cityID}/", 'StreetList');
+        return $this->getOnly("/street/city/{$cityID}/", 'StreetList');
     }
 
     /**
@@ -48,7 +48,7 @@ class Locations extends AbstractCategory
      */
     public function getMetro(int $cityID)
     {
-        return $this->getOnly("metro/city/{$cityID}/", 'MetroList');
+        return $this->getOnly("/metro/city/{$cityID}/", 'MetroList');
     }
 
     /**
@@ -63,7 +63,7 @@ class Locations extends AbstractCategory
      */
     public function getDistricts(int $cityId = null, int $areaId = null)
     {
-        return $this->getOnly('district/?' . \http_build_query([
+        return $this->getOnly('/district/?' . \http_build_query([
             'city' => $cityId,
             'area' => $areaId,
         ]), 'DistrictList');
@@ -82,7 +82,7 @@ class Locations extends AbstractCategory
      */
     public function nearestStationGeo(float $lat, float $lng, string $city = ''): Station
     {
-        $query = "nearestStationGeo/lat/{$lat}/lng/{$lng}/";
+        $query = "/nearestStationGeo/lat/{$lat}/lng/{$lng}/";
         if ($city !== '') {
             $query .= "city/{$city}";
         }
@@ -106,7 +106,7 @@ class Locations extends AbstractCategory
      */
     public function nearDistricts(int $districtID, int $limit = 50)
     {
-        return $this->getOnly("nearDistricts/id/{$districtID}/limit/{$limit}", 'DistrictList');
+        return $this->getOnly("/nearDistricts/id/{$districtID}/limit/{$limit}", 'DistrictList');
     }
 
     /**
@@ -122,7 +122,7 @@ class Locations extends AbstractCategory
     {
         return \array_map(function (array $station) {
             return new Station($station);
-        }, $this->getOnly("nearestStation/id/{$stationID}/", 'StationList'));
+        }, $this->getOnly("/nearestStation/id/{$stationID}/", 'StationList'));
     }
 
     /**
@@ -137,7 +137,7 @@ class Locations extends AbstractCategory
      */
     public function detectCity(float $lat, float $lng): City
     {
-        return new City($this->getOnly("detectCity/lat/{$lat}/lng/{$lng}", 'City'));
+        return new City($this->getOnly("/detectCity/lat/{$lat}/lng/{$lng}", 'City'));
     }
 
     /**
@@ -148,6 +148,6 @@ class Locations extends AbstractCategory
      */
     public function getMoscowArea()
     {
-        return $this->getOnly('area', 'AreaList');
+        return $this->getOnly('/area', 'AreaList');
     }
 }

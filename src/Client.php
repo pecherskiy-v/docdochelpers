@@ -34,7 +34,7 @@ class Client implements ClientInterface
     protected $apiUrl = '';
 
     protected $serverUrl = [
-        'api_1.0.6' => 'https://api.docdoc.ru/public/rest/1.0.6/json/',
+        'api_1.0.6' => 'https://api.docdoc.ru/public/rest/1.0.6/json',
         'production' => 'https://api.docdoc.ru/public/rest/1.0.9',
         'mock_server' => 'https://private-anon-5e031e7a1a-dd109.apiary-mock.com/public/rest/1.0.9',
         'debugging_proxy' => 'https://private-anon-5e031e7a1a-dd109.apiary-proxy.com/public/rest/1.0.9'
