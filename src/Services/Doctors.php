@@ -108,7 +108,7 @@ class Doctors extends AbstractCategory
      * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
      * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
      */
-    public function getReview(int $id)
+    public function getReviews(int $id)
     {
         return $this->getOnly("/review/doctor/{$id}", 'ReviewList');
     }
