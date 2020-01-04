@@ -15,7 +15,7 @@ class ClinicResponse
     {
         $clinic = new Clinic();
         foreach ($response as $key => $value) {
-            if (property_exists(Clinic::class, $key)) {
+            if (property_exists(Clinic::class, lcfirst($key))) {
                 if (is_int($value)) {
                     $clinic->$key = (int)$value;
                 } elseif (is_bool($value)) {

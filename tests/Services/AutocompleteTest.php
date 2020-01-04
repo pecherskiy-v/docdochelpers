@@ -2,22 +2,30 @@
 
 namespace Pecherskiy\DocDoc\Tests\Services;
 
-use Pecherskiy\DocDoc\Services\ServiceAutocomplete;
+use Pecherskiy\DocDoc\Exceptions\MethodIsNotSet;
+use Pecherskiy\DocDoc\Exceptions\RequiredFieldIsNotSet;
+use Pecherskiy\DocDoc\Exceptions\ResponseError;
+use Pecherskiy\DocDoc\Exceptions\Unauthorized;
+use Pecherskiy\DocDoc\Requests\Autocomplete;
 
 class AutocompleteTest extends AbstractCategoryTest
 {
     /**
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws RequiredFieldIsNotSet
+     * @throws ResponseError
+     * @throws Unauthorized
      */
     public function testAutocomplete(): void
     {
-        $autocomplete = new ServiceAutocomplete($this->client);
-        $result = $autocomplete->autocomplete(1, 'Аллерг');
-        $this->assertArrayHasKey('Value', $result[0]);
-        $this->assertArrayHasKey('Type', $result[0]);
-        $this->assertArrayHasKey('Id', $result[0]);
-        $this->assertArrayHasKey('Url', $result[0]);
+        // $autocomplete = new ServiceAutocomplete($this->client);
+        $autocomplete = new Autocomplete($this->client);
+        $autocomplete->city = 1;
+        $autocomplete->search = 'Аллерг';
+        $result = $autocomplete->autocomplete();
+        static::assertObjectHasAttribute('Value', $result[0]);
+        static::assertObjectHasAttribute('Type', $result[0]);
+        static::assertObjectHasAttribute('Id', $result[0]);
+        static::assertObjectHasAttribute('Url', $result[0]);
     }
 }

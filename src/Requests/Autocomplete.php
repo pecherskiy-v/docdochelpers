@@ -1,13 +1,12 @@
 <?php
 
 
-namespace Pecherskiy\DocDoc\Entities;
+namespace Pecherskiy\DocDoc\Requests;
 
 use Pecherskiy\DocDoc\Exceptions\MethodIsNotSet;
 use Pecherskiy\DocDoc\Exceptions\RequiredFieldIsNotSet;
 use Pecherskiy\DocDoc\Exceptions\ResponseError;
 use Pecherskiy\DocDoc\Exceptions\Unauthorized;
-use Pecherskiy\DocDoc\Requests\AbstractRequest;
 
 class Autocomplete extends AbstractRequest
 {

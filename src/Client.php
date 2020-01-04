@@ -46,20 +46,17 @@ class Client implements ClientInterface
      * @param string $username
      * @param string $password
      * @param string $serverType
-     * @param bool   $assoc
      */
     public function __construct(
         string $username,
         string $password,
-        string $serverType = 'production',
-        bool $assoc = false
+        string $serverType = 'production'
     ) {
         $client = new FileGetContents();
         $this->browser = new Browser($client, new Psr17Factory());
         $auth = new BasicAuthMiddleware($username, $password);
         $this->browser->addMiddleware($auth);
         $this->apiUrl = Constants::getServerUrl($serverType);
-        $this->assoc = $assoc;
     }
 
     /**
@@ -107,7 +104,7 @@ class Client implements ClientInterface
      */
     public function getJson()
     {
-        return json_decode($this->get()->getBody()->getContents(), $this->assoc);
+        return json_decode($this->get()->getBody()->getContents(), false);
     }
 
     /**

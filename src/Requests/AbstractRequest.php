@@ -11,6 +11,7 @@ use Pecherskiy\DocDoc\Exceptions\Unauthorized;
 use Pecherskiy\DocDoc\Interfaces\ClientInterface;
 
 use function array_key_exists;
+use function count;
 use function implode;
 use function in_array;
 use function is_array;
@@ -41,7 +42,10 @@ class AbstractRequest
     public function makeRequestUrl(): string
     {
         $params = [];
-        foreach (get_class_vars($this) as $prop => $value) {
+        foreach (get_object_vars($this) as $prop => $value) {
+            if ('repalseProperty' === $prop || 'requiredFields' === $prop || 'client' === $prop) {
+                continue;
+            }
             if (null === $value
                 && in_array(
                     $prop,
@@ -53,6 +57,9 @@ class AbstractRequest
             }
             if (null !== $value) {
                 if (is_array($value)) {
+                    if (0 === count($value)) {
+                        continue;
+                    }
                     $value = implode(',', $value);
                 }
                 if (in_array($prop, static::TRANSFORMED, true)) {
@@ -101,7 +108,7 @@ class AbstractRequest
         } elseif (isset($response->$key)) {
             return $response;
         }
-        throw new ResponseError($response['message'] ?? 'Response is error');
+        throw new ResponseError($response->message ?? 'Response is error');
     }
 
     /**
