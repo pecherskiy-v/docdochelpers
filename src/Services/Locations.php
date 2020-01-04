@@ -1,22 +1,22 @@
 <?php
 
-namespace Leyhmann\DocDoc\Services;
+namespace Pecherskiy\DocDoc\Services;
 
-use Leyhmann\DocDoc\Entities\City;
-use Leyhmann\DocDoc\Entities\Station;
-use Leyhmann\DocDoc\Exceptions\ResponseError;
+use Pecherskiy\DocDoc\Entities\City;
+use Pecherskiy\DocDoc\Entities\Station;
+use Pecherskiy\DocDoc\Exceptions\ResponseError;
 
 /**
  * Class Locations
- * @package Leyhmann\DocDoc\Services
+ * @package Pecherskiy\DocDoc\Services
  */
 class Locations extends AbstractCategory
 {
     /**
      * @return mixed
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function getCities()
     {
@@ -29,8 +29,8 @@ class Locations extends AbstractCategory
      * @param int $cityID
      * @return mixed
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function getStreets(int $cityID)
     {
@@ -43,8 +43,8 @@ class Locations extends AbstractCategory
      * @param int $cityID
      * @return mixed
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function getMetro(int $cityID)
     {
@@ -58,8 +58,8 @@ class Locations extends AbstractCategory
      * @param int|null $areaId
      * @return array|object
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function getDistricts(int $cityId = null, int $areaId = null)
     {
@@ -77,8 +77,8 @@ class Locations extends AbstractCategory
      * @param string $city
      * @return Station
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function nearestStationGeo(float $lat, float $lng, string $city = ''): Station
     {
@@ -101,8 +101,8 @@ class Locations extends AbstractCategory
      * @param int $limit
      * @return array|object
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function nearDistricts(int $districtID, int $limit = 50)
     {
@@ -115,8 +115,8 @@ class Locations extends AbstractCategory
      * @param int $stationID
      * @return array|object
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function nearestStation(int $stationID)
     {
@@ -132,8 +132,8 @@ class Locations extends AbstractCategory
      * @param float $lng
      * @return City
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function detectCity(float $lat, float $lng): City
     {
@@ -143,8 +143,8 @@ class Locations extends AbstractCategory
     /**
      * @return array|object
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function getMoscowArea()
     {

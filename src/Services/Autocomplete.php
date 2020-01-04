@@ -1,12 +1,12 @@
 <?php
 
-namespace Leyhmann\DocDoc\Services;
+namespace Pecherskiy\DocDoc\Services;
 
-use Leyhmann\DocDoc\Exceptions\ResponseError;
+use Pecherskiy\DocDoc\Exceptions\ResponseError;
 
 /**
  * Class Autocomplete
- * @package Leyhmann\DocDoc\Services
+ * @package Pecherskiy\DocDoc\Services
  */
 class Autocomplete extends AbstractCategory
 {
@@ -16,8 +16,8 @@ class Autocomplete extends AbstractCategory
      * @param bool $withoutClinics
      * @return array
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function autocomplete(int $cityId, string $search, bool $withoutClinics = true): array
     {

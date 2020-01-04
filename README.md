@@ -1,8 +1,12 @@
-# Helper for API DocDoc 1.0.9 
+Change namespase -> Pecherskiy\DocDoc
+
+# Helper for API DocDoc 1.0.12
 
 #### [Official API Documentation Version 1.0.6](https://pk.docdoc.ru/docs/partner-api.pdf)
 
-#### [Official API Documentation Version 1.0.9](https://dd109.docs.apiary.io/#reference/0/4//doctor/list)
+#### [Official API Documentation Version 1.0.9](https://dd109.docs.apiary.io/)
+
+#### [Official API Documentation Version 1.0.12](https://dd1012.docs.apiary.io/)
 
 для клиник версия 1.0.6 более не поддерживаеться
 ### Example:

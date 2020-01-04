@@ -1,14 +1,14 @@
 <?php
 
-namespace Leyhmann\DocDoc\Services;
+namespace Pecherskiy\DocDoc\Services;
 
-use Leyhmann\DocDoc\Exceptions\ResponseError;
-use Leyhmann\DocDoc\Helpers\Headers;
-use Leyhmann\DocDoc\Helpers\Builders\RequestQueryBuilder;
+use Pecherskiy\DocDoc\Exceptions\ResponseError;
+use Pecherskiy\DocDoc\Helpers\Headers;
+use Pecherskiy\DocDoc\Helpers\Builders\RequestQueryBuilder;
 
 /**
  * Class Request
- * @package Leyhmann\DocDoc\Services
+ * @package Pecherskiy\DocDoc\Services
  */
 class Request extends AbstractCategory
 {
@@ -16,9 +16,9 @@ class Request extends AbstractCategory
      * @param RequestQueryBuilder $queryBuilder
      * @return array ["status" => "success|error", "message" => "*"]
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\RequiredFieldIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\RequiredFieldIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function send(RequestQueryBuilder $queryBuilder): array
     {

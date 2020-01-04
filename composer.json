@@ -5,7 +5,7 @@
     "docdoc"
   ],
   "version": "2.1.1",
-  "homepage": "https://github.com/leyhmann/docdoc",
+  "homepage": "https://github.com/Leyhmann/docdochelpers",
   "license": "MIT",
   "authors": [
     {
@@ -28,12 +28,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Leyhmann\\DocDoc\\": "src"
+      "Pecherskiy\\DocDoc\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Leyhmann\\DocDoc\\Tests\\": "tests"
+      "Pecherskiy\\DocDoc\\Tests\\": "tests"
     }
   },
   "scripts": {

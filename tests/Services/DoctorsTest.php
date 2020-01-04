@@ -1,10 +1,10 @@
 <?php
 
-namespace Leyhmann\DocDoc\Tests\Services;
+namespace Pecherskiy\DocDoc\Tests\Services;
 
-use Leyhmann\DocDoc\Exceptions\MaximumCount;
-use Leyhmann\DocDoc\Helpers\Builders\DoctorsQueryBuilder;
-use Leyhmann\DocDoc\Services\Doctors;
+use Pecherskiy\DocDoc\Exceptions\MaximumCount;
+use Pecherskiy\DocDoc\Helpers\Builders\DoctorsQueryBuilder;
+use Pecherskiy\DocDoc\Services\Doctors;
 
 class DoctorsTest extends AbstractCategoryTest
 {
@@ -19,11 +19,11 @@ class DoctorsTest extends AbstractCategoryTest
     protected $specialities;
 
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\CityNumberIncorrect
-     * @throws \Leyhmann\DocDoc\Exceptions\MaximumCount
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\CityNumberIncorrect
+     * @throws \Pecherskiy\DocDoc\Exceptions\MaximumCount
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testAllMaxCount(): void
     {
@@ -34,10 +34,10 @@ class DoctorsTest extends AbstractCategoryTest
 
     /**
      * @throws MaximumCount
-     * @throws \Leyhmann\DocDoc\Exceptions\CityNumberIncorrect
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\CityNumberIncorrect
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testAll(): void
     {
@@ -50,10 +50,10 @@ class DoctorsTest extends AbstractCategoryTest
     }
 
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\RequiredFieldIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\RequiredFieldIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetDoctors(): void
     {
@@ -99,10 +99,10 @@ class DoctorsTest extends AbstractCategoryTest
 
     /**
      * @throws MaximumCount
-     * @throws \Leyhmann\DocDoc\Exceptions\CityNumberIncorrect
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\CityNumberIncorrect
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testFind(): void
     {
@@ -114,10 +114,10 @@ class DoctorsTest extends AbstractCategoryTest
 
     /**
      * @throws MaximumCount
-     * @throws \Leyhmann\DocDoc\Exceptions\CityNumberIncorrect
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\CityNumberIncorrect
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testFindByAlias(): void
     {
@@ -129,10 +129,10 @@ class DoctorsTest extends AbstractCategoryTest
 
     /**
      * @throws MaximumCount
-     * @throws \Leyhmann\DocDoc\Exceptions\CityNumberIncorrect
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\CityNumberIncorrect
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetReview(): void
     {
@@ -165,9 +165,9 @@ class DoctorsTest extends AbstractCategoryTest
     }
 
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetSpecialities(): void
     {
@@ -177,9 +177,9 @@ class DoctorsTest extends AbstractCategoryTest
     }
 
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetServices(): void
     {
@@ -199,11 +199,11 @@ class DoctorsTest extends AbstractCategoryTest
 
     /**
      * @throws MaximumCount
-     * @throws \Leyhmann\DocDoc\Exceptions\CityNumberIncorrect
-     * @throws \Leyhmann\DocDoc\Exceptions\InvalidArgument
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\CityNumberIncorrect
+     * @throws \Pecherskiy\DocDoc\Exceptions\InvalidArgument
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetSlots(): void
     {
@@ -223,10 +223,10 @@ class DoctorsTest extends AbstractCategoryTest
     /**
      * @return array
      * @throws MaximumCount
-     * @throws \Leyhmann\DocDoc\Exceptions\CityNumberIncorrect
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\CityNumberIncorrect
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     protected function getDefaultDoctor(): array
     {
@@ -239,9 +239,9 @@ class DoctorsTest extends AbstractCategoryTest
 
     /**
      * @return array
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     protected function getSpecialitiesList(): array
     {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Leyhmann\DocDoc\Entities;
+namespace Pecherskiy\DocDoc\Entities;
 
 /**
  * DTO class
  * Class City
- * @package Leyhmann\DocDoc\Entities
+ * @package Pecherskiy\DocDoc\Entities
  */
 class City extends Entity
 {

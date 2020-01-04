@@ -1,13 +1,13 @@
 <?php
 
-namespace Leyhmann\DocDoc\Services;
+namespace Pecherskiy\DocDoc\Services;
 
-use Leyhmann\DocDoc\Exceptions\ResponseError;
-use Leyhmann\DocDoc\Interfaces\ClientInterface;
+use Pecherskiy\DocDoc\Exceptions\ResponseError;
+use Pecherskiy\DocDoc\Interfaces\ClientInterface;
 
 /**
  * Class AbstractCategory
- * @package Leyhmann\DocDoc\Category
+ * @package Pecherskiy\DocDoc\Category
  */
 abstract class AbstractCategory
 {
@@ -30,8 +30,8 @@ abstract class AbstractCategory
      * @param string $key
      * @return array|object
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     protected function get(string $query, string $key)
     {
@@ -54,8 +54,8 @@ abstract class AbstractCategory
      * @param string $key
      * @return array|object
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     protected function getOnly(string $query, string $key)
     {
@@ -72,8 +72,8 @@ abstract class AbstractCategory
      * @param string $key
      * @return array
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     protected function getFirst(string $query, string $key): array
     {

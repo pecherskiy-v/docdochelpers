@@ -1,20 +1,20 @@
 <?php
 
-namespace Leyhmann\DocDoc\Tests\Services;
+namespace Pecherskiy\DocDoc\Tests\Services;
 
-use Leyhmann\DocDoc\Exceptions\RequiredFieldIsNotSet;
-use Leyhmann\DocDoc\Helpers\Builders\ClinicsQueryBuilder;
-use Leyhmann\DocDoc\Services\Clinics;
+use Pecherskiy\DocDoc\Exceptions\RequiredFieldIsNotSet;
+use Pecherskiy\DocDoc\Helpers\Builders\ClinicsQueryBuilder;
+use Pecherskiy\DocDoc\Services\Clinics;
 
 class ClinicsTest extends AbstractCategoryTest
 {
     protected $clinic;
 
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\RequiredFieldIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\RequiredFieldIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetClinicsRequiredFields(): void
     {
@@ -25,9 +25,9 @@ class ClinicsTest extends AbstractCategoryTest
 
     /**
      * @throws RequiredFieldIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetClinicsRequiredFieldCityId(): void
     {
@@ -42,9 +42,9 @@ class ClinicsTest extends AbstractCategoryTest
 
     /**
      * @throws RequiredFieldIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetClinicsSimpleQuery(): void
     {
@@ -63,9 +63,9 @@ class ClinicsTest extends AbstractCategoryTest
 
     /**
      * @throws RequiredFieldIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetClinicsStartFrom(): void
     {
@@ -89,9 +89,9 @@ class ClinicsTest extends AbstractCategoryTest
 
     /**
      * @throws RequiredFieldIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetClinicsCityId(): void
     {
@@ -115,9 +115,9 @@ class ClinicsTest extends AbstractCategoryTest
 
     /**
      * @throws RequiredFieldIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetClinicsStation(): void
     {
@@ -138,9 +138,9 @@ class ClinicsTest extends AbstractCategoryTest
 
     /**
      * @throws RequiredFieldIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testFind(): void
     {
@@ -153,9 +153,9 @@ class ClinicsTest extends AbstractCategoryTest
 
     /**
      * @throws RequiredFieldIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testFindByAlias(): void
     {
@@ -168,9 +168,9 @@ class ClinicsTest extends AbstractCategoryTest
 
     /**
      * @throws RequiredFieldIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetReviews(): void
     {
@@ -203,9 +203,9 @@ class ClinicsTest extends AbstractCategoryTest
     }
 
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testCount(): void
     {
@@ -219,9 +219,9 @@ class ClinicsTest extends AbstractCategoryTest
 
     /**
      * @throws RequiredFieldIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetClinicImages(): void
     {
@@ -235,9 +235,9 @@ class ClinicsTest extends AbstractCategoryTest
     }
 
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetDiagnostics(): void
     {
@@ -256,9 +256,9 @@ class ClinicsTest extends AbstractCategoryTest
      *
      * @return array
      * @throws RequiredFieldIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     protected function getDefaultClinic(): array
     {

@@ -1,17 +1,17 @@
 <?php
 
-namespace Leyhmann\DocDoc\Tests\Services;
+namespace Pecherskiy\DocDoc\Tests\Services;
 
-use Leyhmann\DocDoc\Helpers\Builders\RequestQueryBuilder;
-use Leyhmann\DocDoc\Services\Request;
+use Pecherskiy\DocDoc\Helpers\Builders\RequestQueryBuilder;
+use Pecherskiy\DocDoc\Services\Request;
 
 class RequestTest extends AbstractCategoryTest
 {
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\RequiredFieldIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\RequiredFieldIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      * @throws \Exception
      */
     public function testSend(): void

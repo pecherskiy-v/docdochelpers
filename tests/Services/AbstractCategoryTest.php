@@ -1,8 +1,8 @@
 <?php
 
-namespace Leyhmann\DocDoc\Tests\Services;
+namespace Pecherskiy\DocDoc\Tests\Services;
 
-use Leyhmann\DocDoc\Client;
+use Pecherskiy\DocDoc\Client;
 use PHPUnit\Framework\TestCase;
 
 abstract class AbstractCategoryTest extends TestCase

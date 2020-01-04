@@ -1,15 +1,15 @@
 <?php
 
-namespace Leyhmann\DocDoc\Tests\Services;
+namespace Pecherskiy\DocDoc\Tests\Services;
 
-use Leyhmann\DocDoc\Services\Autocomplete;
+use Pecherskiy\DocDoc\Services\Autocomplete;
 
 class AutocompleteTest extends AbstractCategoryTest
 {
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testAutocomplete(): void
     {

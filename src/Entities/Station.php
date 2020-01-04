@@ -1,11 +1,11 @@
 <?php
 
-namespace Leyhmann\DocDoc\Entities;
+namespace Pecherskiy\DocDoc\Entities;
 
 /**
  * DTO class station
  * Class Station
- * @package Leyhmann\DocDoc\Entities
+ * @package Pecherskiy\DocDoc\Entities
  */
 class Station extends Entity
 {

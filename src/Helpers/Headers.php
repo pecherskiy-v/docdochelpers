@@ -1,6 +1,6 @@
 <?php
 
-namespace Leyhmann\DocDoc\Helpers;
+namespace Pecherskiy\DocDoc\Helpers;
 
 class Headers
 {

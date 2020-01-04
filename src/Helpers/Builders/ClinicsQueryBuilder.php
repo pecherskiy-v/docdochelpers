@@ -1,6 +1,6 @@
 <?php
 
-namespace Leyhmann\DocDoc\Helpers\Builders;
+namespace Pecherskiy\DocDoc\Helpers\Builders;
 
 class ClinicsQueryBuilder extends QueryBuilder
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Leyhmann\DocDoc\Entities;
+namespace Pecherskiy\DocDoc\Entities;
 
 /**
  * Default dto class
  * Class Entity
- * @package Leyhmann\DocDoc\Entities
+ * @package Pecherskiy\DocDoc\Entities
  */
 abstract class Entity
 {

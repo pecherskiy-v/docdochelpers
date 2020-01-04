@@ -1,17 +1,17 @@
 <?php
 
-namespace Leyhmann\DocDoc\Services;
+namespace Pecherskiy\DocDoc\Services;
 
 use http\Exception\InvalidArgumentException;
-use Leyhmann\DocDoc\Exceptions\CityNumberIncorrect;
-use Leyhmann\DocDoc\Exceptions\InvalidArgument;
-use Leyhmann\DocDoc\Exceptions\MaximumCount;
-use Leyhmann\DocDoc\Exceptions\ResponseError;
-use Leyhmann\DocDoc\Helpers\Builders\DoctorsQueryBuilder;
+use Pecherskiy\DocDoc\Exceptions\CityNumberIncorrect;
+use Pecherskiy\DocDoc\Exceptions\InvalidArgument;
+use Pecherskiy\DocDoc\Exceptions\MaximumCount;
+use Pecherskiy\DocDoc\Exceptions\ResponseError;
+use Pecherskiy\DocDoc\Helpers\Builders\DoctorsQueryBuilder;
 
 /**
  * Class Doctors
- * @package Leyhmann\DocDoc\Services
+ * @package Pecherskiy\DocDoc\Services
  */
 class Doctors extends AbstractCategory
 {
@@ -26,8 +26,8 @@ class Doctors extends AbstractCategory
      * @throws CityNumberIncorrect
      * @throws MaximumCount
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function all(int $cityID, int $count = 500, int $start = 1)
     {
@@ -52,9 +52,9 @@ class Doctors extends AbstractCategory
      * @param DoctorsQueryBuilder $builder
      * @return array|object
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\RequiredFieldIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\RequiredFieldIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function getDoctors(DoctorsQueryBuilder $builder)
     {
@@ -70,8 +70,8 @@ class Doctors extends AbstractCategory
      * @param int|null $slotDays
      * @return mixed
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function find(int $id, int $city = null, bool $withSlots = null, int $slotDays = null)
     {
@@ -89,8 +89,8 @@ class Doctors extends AbstractCategory
      * @param int|null $city
      * @return mixed
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function findByAlias(string $alias, int $city = null)
     {
@@ -105,8 +105,8 @@ class Doctors extends AbstractCategory
      * @param int $id
      * @return array|object
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function getReviews(int $id)
     {
@@ -123,8 +123,8 @@ class Doctors extends AbstractCategory
      * 1 - получать только уникальные специальности (стоит по умолчанию)
      * @return mixed
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function getSpecialities(int $cityID, int $onlySimple = 1)
     {
@@ -141,8 +141,8 @@ class Doctors extends AbstractCategory
      *
      * @return mixed
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function getServices()
     {
@@ -160,8 +160,8 @@ class Doctors extends AbstractCategory
      * @return array|object
      * @throws InvalidArgument
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function getSlots(int $id, int $clinicId, \DateTime $startDate, \DateTime $finishDate, $type = 'doctor')
     {

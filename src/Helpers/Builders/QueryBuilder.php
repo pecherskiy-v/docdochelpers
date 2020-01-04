@@ -1,14 +1,14 @@
 <?php
 
-namespace Leyhmann\DocDoc\Helpers\Builders;
+namespace Pecherskiy\DocDoc\Helpers\Builders;
 
-use Leyhmann\DocDoc\Exceptions\RequiredFieldIsNotSet;
+use Pecherskiy\DocDoc\Exceptions\RequiredFieldIsNotSet;
 
 /**
  * Query helper for long api
  *
  * Class QueryBuilder
- * @package Leyhmann\DocDoc\Helpers
+ * @package Pecherskiy\DocDoc\Helpers
  */
 abstract class QueryBuilder
 {

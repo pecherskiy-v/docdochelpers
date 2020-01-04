@@ -1,6 +1,6 @@
 <?php
 
-namespace Leyhmann\DocDoc\Exceptions;
+namespace Pecherskiy\DocDoc\Exceptions;
 
 class MaximumCount extends \Exception
 {

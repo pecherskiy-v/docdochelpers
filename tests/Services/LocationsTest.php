@@ -1,9 +1,9 @@
 <?php
 
-namespace Leyhmann\DocDoc\Tests\Services;
+namespace Pecherskiy\DocDoc\Tests\Services;
 
-use Leyhmann\DocDoc\Entities\Station;
-use Leyhmann\DocDoc\Services\Locations;
+use Pecherskiy\DocDoc\Entities\Station;
+use Pecherskiy\DocDoc\Services\Locations;
 
 class LocationsTest extends AbstractCategoryTest
 {
@@ -13,9 +13,9 @@ class LocationsTest extends AbstractCategoryTest
     protected $cities;
 
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetCities(): void
     {
@@ -37,9 +37,9 @@ class LocationsTest extends AbstractCategoryTest
     }
 
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetStreets(): void
     {
@@ -55,9 +55,9 @@ class LocationsTest extends AbstractCategoryTest
     }
 
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetMetro(): void
     {
@@ -76,9 +76,9 @@ class LocationsTest extends AbstractCategoryTest
     }
 
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetDistricts(): void
     {
@@ -94,9 +94,9 @@ class LocationsTest extends AbstractCategoryTest
     }
 
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testNearestStationGeo(): void
     {
@@ -107,9 +107,9 @@ class LocationsTest extends AbstractCategoryTest
     }
 
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testNearDistricts(): void
     {
@@ -126,9 +126,9 @@ class LocationsTest extends AbstractCategoryTest
     }
 
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testNearestStation(): void
     {
@@ -141,9 +141,9 @@ class LocationsTest extends AbstractCategoryTest
     }
 
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testDetectCity(): void
     {
@@ -154,9 +154,9 @@ class LocationsTest extends AbstractCategoryTest
     }
 
     /**
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function testGetMoscowArea(): void
     {
@@ -173,9 +173,9 @@ class LocationsTest extends AbstractCategoryTest
 
     /**
      * @return array
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     protected function getCities(): array
     {

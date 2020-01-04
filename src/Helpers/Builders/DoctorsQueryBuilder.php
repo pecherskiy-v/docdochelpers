@@ -1,12 +1,12 @@
 <?php
 
-namespace Leyhmann\DocDoc\Helpers\Builders;
+namespace Pecherskiy\DocDoc\Helpers\Builders;
 
 /**
  * Helper for query doctor
  *
  * Class DoctorsQueryBuilder
- * @package Leyhmann\DocDoc\Helpers
+ * @package Pecherskiy\DocDoc\Helpers
  */
 class DoctorsQueryBuilder extends QueryBuilder
 {

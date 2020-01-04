@@ -1,10 +1,10 @@
 <?php
 
-namespace Leyhmann\DocDoc\Interfaces;
+namespace Pecherskiy\DocDoc\Interfaces;
 
-use Leyhmann\DocDoc\Exceptions\MethodIsNotSet;
-use Leyhmann\DocDoc\Exceptions\Unauthorized;
-use Leyhmann\DocDoc\Helpers\Headers;
+use Pecherskiy\DocDoc\Exceptions\MethodIsNotSet;
+use Pecherskiy\DocDoc\Exceptions\Unauthorized;
+use Pecherskiy\DocDoc\Helpers\Headers;
 use Psr\Http\Message\ResponseInterface;
 
 interface ClientInterface

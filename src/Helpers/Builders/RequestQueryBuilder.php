@@ -1,12 +1,12 @@
 <?php
 
-namespace Leyhmann\DocDoc\Helpers\Builders;
+namespace Pecherskiy\DocDoc\Helpers\Builders;
 
 /**
  * Helper for create request
  *
  * Class RequestQueryBuilder
- * @package Leyhmann\DocDoc\Helpers
+ * @package Pecherskiy\DocDoc\Helpers
  */
 class RequestQueryBuilder extends QueryBuilder
 {

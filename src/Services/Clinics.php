@@ -1,13 +1,13 @@
 <?php
 
-namespace Leyhmann\DocDoc\Services;
+namespace Pecherskiy\DocDoc\Services;
 
-use Leyhmann\DocDoc\Exceptions\ResponseError;
-use Leyhmann\DocDoc\Helpers\Builders\ClinicsQueryBuilder;
+use Pecherskiy\DocDoc\Exceptions\ResponseError;
+use Pecherskiy\DocDoc\Helpers\Builders\ClinicsQueryBuilder;
 
 /**
  * Class Clinics
- * @package Leyhmann\DocDoc\Services
+ * @package Pecherskiy\DocDoc\Services
  */
 class Clinics extends AbstractCategory
 {
@@ -15,9 +15,9 @@ class Clinics extends AbstractCategory
      * @param ClinicsQueryBuilder $builder
      * @return array|object
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\RequiredFieldIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\RequiredFieldIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function getClinics(ClinicsQueryBuilder $builder)
     {
@@ -30,8 +30,8 @@ class Clinics extends AbstractCategory
      * @param int $id
      * @return array|object
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function find(int $id)
     {
@@ -45,8 +45,8 @@ class Clinics extends AbstractCategory
      * @param int|null $city
      * @return array|object
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function findByAlias(string $alias, int $city = null)
     {
@@ -64,8 +64,8 @@ class Clinics extends AbstractCategory
      * @param int $id
      * @return array|object
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function getReviews(int $id)
     {
@@ -81,8 +81,8 @@ class Clinics extends AbstractCategory
      * @param int|null $speciality
      * @return array|object
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function count(int $cityID, array $clinicType = [], array $stations = [], int $speciality = null)
     {
@@ -104,8 +104,8 @@ class Clinics extends AbstractCategory
      * @param int $clinicID
      * @return array|object
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function getClinicImages(int $clinicID)
     {
@@ -115,8 +115,8 @@ class Clinics extends AbstractCategory
     /**
      * @return array|object
      * @throws ResponseError
-     * @throws \Leyhmann\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Leyhmann\DocDoc\Exceptions\Unauthorized
+     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
+     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
      */
     public function getDiagnostics()
     {

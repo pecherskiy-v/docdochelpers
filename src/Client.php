@@ -1,15 +1,15 @@
 <?php
 
-namespace Leyhmann\DocDoc;
+namespace Pecherskiy\DocDoc;
 
 use Buzz\Browser;
 use Buzz\Client\FileGetContents;
 use Buzz\Middleware\BasicAuthMiddleware;
-use Leyhmann\DocDoc\Helpers\Headers;
-use Leyhmann\DocDoc\Interfaces\ClientInterface;
+use Pecherskiy\DocDoc\Helpers\Headers;
+use Pecherskiy\DocDoc\Interfaces\ClientInterface;
 use Nyholm\Psr7\Factory\Psr17Factory;
-use Leyhmann\DocDoc\Exceptions\MethodIsNotSet;
-use Leyhmann\DocDoc\Exceptions\Unauthorized;
+use Pecherskiy\DocDoc\Exceptions\MethodIsNotSet;
+use Pecherskiy\DocDoc\Exceptions\Unauthorized;
 use Psr\Http\Message\ResponseInterface;
 
 /**
