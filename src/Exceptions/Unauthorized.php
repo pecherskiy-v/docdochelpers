@@ -2,6 +2,8 @@
 
 namespace Pecherskiy\DocDoc\Exceptions;
 
-class Unauthorized extends \Exception
+use Exception;
+
+class Unauthorized extends Exception
 {
 }

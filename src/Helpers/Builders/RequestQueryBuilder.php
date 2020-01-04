@@ -2,10 +2,13 @@
 
 namespace Pecherskiy\DocDoc\Helpers\Builders;
 
+use DateTime;
+
 /**
  * Helper for create request
  *
  * Class RequestQueryBuilder
+ *
  * @package Pecherskiy\DocDoc\Helpers
  */
 class RequestQueryBuilder extends QueryBuilder
@@ -51,7 +54,7 @@ class RequestQueryBuilder extends QueryBuilder
     protected $departure;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     protected $dateAdmission;
 
@@ -193,10 +196,10 @@ class RequestQueryBuilder extends QueryBuilder
     }
 
     /**
-     * @param \DateTime $dateAdmission
+     * @param DateTime $dateAdmission
      * @return RequestQueryBuilder
      */
-    public function setDateAdmission(\DateTime $dateAdmission): RequestQueryBuilder
+    public function setDateAdmission(DateTime $dateAdmission): RequestQueryBuilder
     {
         $this->dateAdmission = $dateAdmission;
         return $this;

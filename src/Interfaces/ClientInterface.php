@@ -11,26 +11,29 @@ interface ClientInterface
 {
     /**
      * @param string $method
+     *
      * @return ClientInterface
      */
     public function setMethod(string $method): ClientInterface;
 
     /**
      * @param Headers|null $headers
-     * @throws MethodIsNotSet
-     * @throws Unauthorized
+     *
      * @return ResponseInterface
+     * @throws Unauthorized
+     * @throws MethodIsNotSet
      */
     public function get(Headers $headers = null): ResponseInterface;
 
     /**
      * @param Headers|null $headers
-     * @param string|null $body
-     * @throws MethodIsNotSet
-     * @throws Unauthorized
+     * @param string       $body
+     *
      * @return ResponseInterface
+     * @throws Unauthorized
+     * @throws MethodIsNotSet
      */
-    public function post(Headers $headers = null, ?string $body = ''): ResponseInterface;
+    public function post(Headers $headers = null, string $body = ''): ResponseInterface;
 
     /**
      * @return array|object

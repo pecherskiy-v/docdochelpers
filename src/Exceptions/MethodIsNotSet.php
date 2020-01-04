@@ -2,6 +2,8 @@
 
 namespace Pecherskiy\DocDoc\Exceptions;
 
-class MethodIsNotSet extends \Exception
+use Exception;
+
+class MethodIsNotSet extends Exception
 {
 }

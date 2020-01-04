@@ -21,6 +21,7 @@
   "require": {
     "php": "^7.2",
     "ext-json": "*",
+    "nesbot/carbon": "2.*",
     "kriswallsmith/buzz": "^0.17.2"
   },
   "require-dev": {

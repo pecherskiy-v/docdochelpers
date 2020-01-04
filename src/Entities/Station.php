@@ -5,6 +5,7 @@ namespace Pecherskiy\DocDoc\Entities;
 /**
  * DTO class station
  * Class Station
+ *
  * @package Pecherskiy\DocDoc\Entities
  */
 class Station extends Entity
@@ -13,53 +14,54 @@ class Station extends Entity
      * {@inheritdoc}
      * @var array
      */
-    protected const TYPES = [
-        'Id' => 'integer',
-        'CityId' => 'integer',
-        'DistrictIds' => 'array',
-    ];
+    protected const TYPES
+        = [
+            'id'          => 'integer',
+            'cityId'      => 'integer',
+            'districtIds' => 'array',
+        ];
 
     /**
      * @var int
      */
-    protected $Id;
+    protected $id;
 
     /**
      * @var string
      */
-    protected $Name;
+    protected $name;
 
     /**
      * @var string
      */
-    protected $LineName;
+    protected $lineName;
 
     /**
      * @var string
      */
-    protected $LineColor;
+    protected $lineColor;
 
     /**
      * @var int
      */
-    protected $CityId;
+    protected $cityId;
 
     /**
      * @var string
      */
-    protected $Alias;
+    protected $alias;
 
     /**
      * @var array
      */
-    protected $DistrictIds = [];
+    protected $districtIds = [];
 
     /**
      * @return int
      */
     public function getId(): int
     {
-        return $this->Id;
+        return $this->id;
     }
 
     /**
@@ -67,7 +69,7 @@ class Station extends Entity
      */
     public function getName(): string
     {
-        return $this->Name;
+        return $this->name;
     }
 
     /**
@@ -75,7 +77,7 @@ class Station extends Entity
      */
     public function getLineName(): string
     {
-        return $this->LineName;
+        return $this->lineName;
     }
 
     /**
@@ -83,7 +85,7 @@ class Station extends Entity
      */
     public function getLineColor(): string
     {
-        return $this->LineColor;
+        return $this->lineColor;
     }
 
     /**
@@ -91,7 +93,7 @@ class Station extends Entity
      */
     public function getCityId(): int
     {
-        return $this->CityId;
+        return $this->cityId;
     }
 
     /**
@@ -99,7 +101,7 @@ class Station extends Entity
      */
     public function getAlias(): string
     {
-        return $this->Alias;
+        return $this->alias;
     }
 
     /**
@@ -107,6 +109,6 @@ class Station extends Entity
      */
     public function getDistrictIds(): array
     {
-        return $this->DistrictIds;
+        return $this->districtIds;
     }
 }

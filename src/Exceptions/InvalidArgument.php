@@ -2,6 +2,8 @@
 
 namespace Pecherskiy\DocDoc\Exceptions;
 
-class InvalidArgument extends \Exception
+use Exception;
+
+class InvalidArgument extends Exception
 {
 }

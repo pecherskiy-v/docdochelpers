@@ -2,6 +2,8 @@
 
 namespace Pecherskiy\DocDoc\Exceptions;
 
-class CityNumberIncorrect extends \Exception
+use Exception;
+
+class CityNumberIncorrect extends Exception
 {
 }

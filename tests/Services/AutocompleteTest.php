@@ -2,7 +2,7 @@
 
 namespace Pecherskiy\DocDoc\Tests\Services;
 
-use Pecherskiy\DocDoc\Services\Autocomplete;
+use Pecherskiy\DocDoc\Services\ServiceAutocomplete;
 
 class AutocompleteTest extends AbstractCategoryTest
 {
@@ -13,7 +13,7 @@ class AutocompleteTest extends AbstractCategoryTest
      */
     public function testAutocomplete(): void
     {
-        $autocomplete = new Autocomplete($this->client);
+        $autocomplete = new ServiceAutocomplete($this->client);
         $result = $autocomplete->autocomplete(1, 'Аллерг');
         $this->assertArrayHasKey('Value', $result[0]);
         $this->assertArrayHasKey('Type', $result[0]);

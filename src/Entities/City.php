@@ -5,70 +5,72 @@ namespace Pecherskiy\DocDoc\Entities;
 /**
  * DTO class
  * Class City
+ *
  * @package Pecherskiy\DocDoc\Entities
  */
 class City extends Entity
 {
-    protected const TYPES = [
-        'Id' => 'int',
-        'HasDiagnostic' => 'bool',
-        'SearchType' => 'int',
-        'TimeZone' => 'int',
-        'Latitude' => 'float',
-        'Longitude' => 'float',
-    ];
+    protected const TYPES
+        = [
+            'id'            => 'int',
+            'hasDiagnostic' => 'bool',
+            'searchType'    => 'int',
+            'timeZone'      => 'int',
+            'latitude'      => 'float',
+            'longitude'     => 'float',
+        ];
 
     /**
      * @var int
      */
-    protected $Id;
+    protected $id;
 
     /**
      * @var string
      */
-    protected $Name;
+    protected $name;
 
     /**
      * @var string
      */
-    protected $Alias;
+    protected $alias;
 
     /**
      * @var string
      */
-    protected $Phone;
+    protected $phone;
 
     /**
      * @var float
      */
-    protected $Latitude;
+    protected $latitude;
 
     /**
      * @var float
      */
-    protected $Longitude;
+    protected $longitude;
 
     /**
-     * @var integer(1,2,3)
+     * @var int(1,2,3)
      */
-    protected $SearchType;
+    protected $searchType;
 
     /**
      * @var bool
      */
-    protected $HasDiagnostic;
+    protected $hasDiagnostic;
 
     /**
-     * @var integer
+     * @var int
      */
-    protected $TimeZone;
+    protected $timeZone;
 
     /**
      * @return int
      */
     public function getId(): int
     {
-        return $this->Id;
+        return $this->id;
     }
 
     /**
@@ -76,7 +78,7 @@ class City extends Entity
      */
     public function getName(): string
     {
-        return $this->Name;
+        return $this->name;
     }
 
     /**
@@ -84,7 +86,7 @@ class City extends Entity
      */
     public function getAlias(): string
     {
-        return $this->Alias;
+        return $this->alias;
     }
 
     /**
@@ -92,7 +94,7 @@ class City extends Entity
      */
     public function getPhone(): string
     {
-        return $this->Phone;
+        return $this->phone;
     }
 
     /**
@@ -100,7 +102,7 @@ class City extends Entity
      */
     public function getLatitude(): float
     {
-        return $this->Latitude;
+        return $this->latitude;
     }
 
     /**
@@ -108,7 +110,7 @@ class City extends Entity
      */
     public function getLongitude(): float
     {
-        return $this->Longitude;
+        return $this->longitude;
     }
 
     /**
@@ -116,7 +118,7 @@ class City extends Entity
      */
     public function getSearchType(): int
     {
-        return $this->SearchType;
+        return $this->searchType;
     }
 
     /**
@@ -124,7 +126,7 @@ class City extends Entity
      */
     public function isHasDiagnostic(): bool
     {
-        return $this->HasDiagnostic;
+        return $this->hasDiagnostic;
     }
 
     /**
@@ -132,6 +134,6 @@ class City extends Entity
      */
     public function getTimeZone(): int
     {
-        return $this->TimeZone;
+        return $this->timeZone;
     }
 }

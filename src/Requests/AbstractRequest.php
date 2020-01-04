@@ -1,32 +1,85 @@
 <?php
 
-namespace Pecherskiy\DocDoc\Services;
+
+namespace Pecherskiy\DocDoc\Requests;
 
 use Pecherskiy\DocDoc\Exceptions\MethodIsNotSet;
+use Pecherskiy\DocDoc\Exceptions\RequiredFieldIsNotSet;
+
 use Pecherskiy\DocDoc\Exceptions\ResponseError;
 use Pecherskiy\DocDoc\Exceptions\Unauthorized;
 use Pecherskiy\DocDoc\Interfaces\ClientInterface;
 
+use function array_key_exists;
+use function implode;
+use function in_array;
 use function is_array;
 
-/**
- * Class AbstractCategory
- * @package Pecherskiy\DocDoc\Category
- */
-abstract class  AbstractCategory
+class AbstractRequest
 {
+    /**
+     * Обязательные поля
+     *
+     * @var array $requiredFields
+     */
+    public $requiredFields = [];
+
+    /**
+     * List of fields to rename
+     */
+    public const TRANSFORMED = [];
+
+    /**
+     * @var array
+     */
+    public $repalseProperty = [];
+
+    /**
+     * @return string
+     * @throws RequiredFieldIsNotSet
+     */
+    public function makeRequestUrl(): string
+    {
+        $params = [];
+        foreach (get_class_vars($this) as $prop => $value) {
+            if (null === $value
+                && in_array(
+                    $prop,
+                    $this->requiredFields,
+                    true
+                )
+            ) {
+                throw new RequiredFieldIsNotSet("The field {$prop} is required");
+            }
+            if (null !== $value) {
+                if (is_array($value)) {
+                    $value = implode(',', $value);
+                }
+                if (in_array($prop, static::TRANSFORMED, true)) {
+                    $prop = static::TRANSFORMED[$prop];
+                }
+                if (array_key_exists($prop, $this->repalseProperty)) {
+                    $prop = $this->repalseProperty[$prop];
+                }
+
+                $params[] = "$prop/$value";
+            }
+        }
+        return implode('/', $params);
+    }
+
     /**
      * @var ClientInterface
      */
     protected $client;
 
     /**
-     * AbstractCategory constructor.
      * @param ClientInterface $client
      */
     public function __construct(ClientInterface $client)
     {
         $this->client = $client;
+
     }
 
     /**

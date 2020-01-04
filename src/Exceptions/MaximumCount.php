@@ -2,6 +2,8 @@
 
 namespace Pecherskiy\DocDoc\Exceptions;
 
-class MaximumCount extends \Exception
+use Exception;
+
+class MaximumCount extends Exception
 {
 }

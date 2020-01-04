@@ -2,6 +2,8 @@
 
 namespace Pecherskiy\DocDoc\Exceptions;
 
-class RequiredFieldIsNotSet extends \Exception
+use Exception;
+
+class RequiredFieldIsNotSet extends Exception
 {
 }

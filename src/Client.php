@@ -12,9 +12,11 @@ use Pecherskiy\DocDoc\Exceptions\MethodIsNotSet;
 use Pecherskiy\DocDoc\Exceptions\Unauthorized;
 use Psr\Http\Message\ResponseInterface;
 
+use function json_decode;
+
 /**
  * Class Client
- * @package Leyhmann\DocDoc
+ * @package Pecherskiy\DocDoc
  */
 class Client implements ClientInterface
 {
@@ -24,21 +26,10 @@ class Client implements ClientInterface
     protected $browser;
 
     /**
-     * @var int
-     */
-    protected $clientTimeout;
-
-    /**
      * @var string
      */
     protected $apiUrl = '';
 
-    protected $serverUrl = [
-        'api_1.0.6' => 'https://api.docdoc.ru/public/rest/1.0.6/json',
-        'production' => 'https://api.docdoc.ru/public/rest/1.0.9',
-        'mock_server' => 'https://private-anon-5e031e7a1a-dd109.apiary-mock.com/public/rest/1.0.9',
-        'debugging_proxy' => 'https://private-anon-5e031e7a1a-dd109.apiary-proxy.com/public/rest/1.0.9'
-    ];
     /**
      * @var string
      */
@@ -51,8 +42,11 @@ class Client implements ClientInterface
 
     /**
      * Client constructor.
+     *
      * @param string $username
      * @param string $password
+     * @param string $serverType
+     * @param bool   $assoc
      */
     public function __construct(
         string $username,
@@ -64,7 +58,7 @@ class Client implements ClientInterface
         $this->browser = new Browser($client, new Psr17Factory());
         $auth = new BasicAuthMiddleware($username, $password);
         $this->browser->addMiddleware($auth);
-        $this->apiUrl = $this->serverUrl[$serverType];
+        $this->apiUrl = Constants::getServerUrl($serverType);
         $this->assoc = $assoc;
     }
 
@@ -94,12 +88,12 @@ class Client implements ClientInterface
 
     /**
      * @param Headers|null $headers
-     * @param string|null $body
+     * @param string $body
      * @return ResponseInterface
      * @throws MethodIsNotSet
      * @throws Unauthorized
      */
-    public function post(Headers $headers = null, ?string $body = ''): ResponseInterface
+    public function post(Headers $headers = null, string $body = ''): ResponseInterface
     {
         $headersArr = $headers ? $headers->toArray() : [];
 
@@ -113,7 +107,7 @@ class Client implements ClientInterface
      */
     public function getJson()
     {
-        return \json_decode($this->get()->getBody()->getContents(), $this->assoc);
+        return json_decode($this->get()->getBody()->getContents(), $this->assoc);
     }
 
     /**
@@ -122,7 +116,7 @@ class Client implements ClientInterface
      */
     protected function getRequestUrl(): string
     {
-        if ($this->method === null) {
+        if (null === $this->method) {
             throw new MethodIsNotSet('It is necessary to establish a method for accessing api');
         }
 

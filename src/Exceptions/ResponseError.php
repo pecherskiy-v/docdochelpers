@@ -2,6 +2,8 @@
 
 namespace Pecherskiy\DocDoc\Exceptions;
 
-class ResponseError extends \Exception
+use Exception;
+
+class ResponseError extends Exception
 {
 }
