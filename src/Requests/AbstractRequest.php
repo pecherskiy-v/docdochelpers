@@ -10,6 +10,8 @@ use Pecherskiy\DocDoc\Exceptions\ResponseError;
 use Pecherskiy\DocDoc\Exceptions\Unauthorized;
 use Pecherskiy\DocDoc\Interfaces\ClientInterface;
 
+use stdClass;
+
 use function array_key_exists;
 use function count;
 use function implode;
@@ -92,20 +94,25 @@ class AbstractRequest
     /**
      * @param string $query
      * @param string $key
-     * @return array|object
+     * @return object
      * @throws ResponseError
      * @throws MethodIsNotSet
      * @throws Unauthorized
      */
-    protected function get(string $query, string $key)
+    protected function get(string $query, string $key) : object
     {
         $this->client->setMethod($query);
         $response = $this->client->getJson();
         if (is_array($response)) {
-            if (isset($response[$key])) {
-                return $response;
+            if (isset($response['message'])) {
+                throw new ResponseError($response['message'] ?? 'Response is error');
             }
-        } elseif (isset($response->$key)) {
+            $result = new stdClass();
+            $result->response = $response;
+            return $result;
+        }
+
+        if (isset($response->$key)) {
             return $response;
         }
         throw new ResponseError($response->message ?? 'Response is error');
@@ -122,8 +129,8 @@ class AbstractRequest
     protected function getOnly(string $query, string $key)
     {
         $get = $this->get($query, $key);
-        if (is_array($get)) {
-            return $get[$key];
+        if (!isset($get->$key)) {
+            throw new ResponseError($response->message ?? 'Response is error');
         }
 
         return $get->$key;
@@ -132,17 +139,18 @@ class AbstractRequest
     /**
      * @param string $query
      * @param string $key
-     * @return array
-     * @throws ResponseError
+     *
+     * @return object
      * @throws MethodIsNotSet
+     * @throws ResponseError
      * @throws Unauthorized
      */
-    protected function getFirst(string $query, string $key): array
+    protected function getFirst(string $query, string $key): object
     {
         $response = $this->get($query, $key);
-        if (isset($response[$key][0])) {
-            return $response[$key][0];
+        if (isset($response->$key[0])) {
+            return $response->$key[0];
         }
-        throw new ResponseError($response['message'] ?? 'Response is error');
+        throw new ResponseError($response->message ?? 'Response is error');
     }
 }

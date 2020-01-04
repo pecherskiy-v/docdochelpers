@@ -98,7 +98,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * @return array|object
+     * @return object
      * @throws MethodIsNotSet
      * @throws Unauthorized
      */

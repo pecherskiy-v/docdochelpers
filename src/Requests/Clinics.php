@@ -1,6 +1,6 @@
 <?php
 
-namespace Pecherskiy\DocDoc\Services;
+namespace Pecherskiy\DocDoc\Requests;
 
 use Carbon\Carbon;
 use Pecherskiy\DocDoc\Entities\Clinic;
@@ -8,11 +8,7 @@ use Pecherskiy\DocDoc\Exceptions\MethodIsNotSet;
 use Pecherskiy\DocDoc\Exceptions\RequiredFieldIsNotSet;
 use Pecherskiy\DocDoc\Exceptions\ResponseError;
 use Pecherskiy\DocDoc\Exceptions\Unauthorized;
-use Pecherskiy\DocDoc\Requests\AbstractRequest;
 use Pecherskiy\DocDoc\Responses\ClinicResponse;
-
-use function http_build_query;
-use function implode;
 
 /**
  * Class Clinics
@@ -176,13 +172,15 @@ class Clinics extends AbstractRequest
     public $search;
 
     /**
-     * @return Clinic[]|array
+     * @param bool $clinicsOnly
+     *
+     * @return array|object|Clinic[]
      * @throws MethodIsNotSet
      * @throws RequiredFieldIsNotSet
      * @throws ResponseError
      * @throws Unauthorized
      */
-    public function getClinics():array
+    public function getClinics(bool $clinicsOnly = true)
     {
         $this->requiredFields = [
             'start',
@@ -191,10 +189,15 @@ class Clinics extends AbstractRequest
         ];
 
         $clinicList = [];
-        foreach ($this->get("/clinic/list/{$this->makeRequestUrl()}", 'ClinicList') as $clinic) {
+        $result = $this->get("/clinic/list/{$this->makeRequestUrl()}", 'ClinicList');
+        foreach ($result->ClinicList as $clinic) {
             $clinicList[] = ClinicResponse::map($clinic);
         }
-        return $clinicList;
+        if ($clinicsOnly) {
+            return $clinicList;
+        }
+        $result->ClinicList = $clinicList;
+        return $result;
     }
 
     /**
