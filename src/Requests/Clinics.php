@@ -8,7 +8,6 @@ use Pecherskiy\DocDoc\Exceptions\MethodIsNotSet;
 use Pecherskiy\DocDoc\Exceptions\RequiredFieldIsNotSet;
 use Pecherskiy\DocDoc\Exceptions\ResponseError;
 use Pecherskiy\DocDoc\Exceptions\Unauthorized;
-use Pecherskiy\DocDoc\Responses\ClinicResponse;
 
 /**
  * Class Clinics
@@ -191,7 +190,7 @@ class Clinics extends AbstractRequest
         $clinicList = [];
         $result = $this->get("/clinic/list/{$this->makeRequestUrl()}", 'ClinicList');
         foreach ($result->ClinicList as $clinic) {
-            $clinicList[] = ClinicResponse::map($clinic);
+            $clinicList[] = new Clinic($clinic);
         }
         if ($clinicsOnly) {
             return $clinicList;
@@ -211,7 +210,7 @@ class Clinics extends AbstractRequest
      */
     public function find(int $id):Clinic
     {
-        return ClinicResponse::map($this->getFirst("/clinic/{$id}", 'Clinic'));
+        return new Clinic($this->getFirst("/clinic/{$id}", 'Clinic'));
     }
 
     /**
@@ -230,7 +229,7 @@ class Clinics extends AbstractRequest
         if (null !== $city) {
             $cityStr = 'city/' . $city;
         }
-        return  ClinicResponse::map(
+        return new Clinic(
             $this->getFirst(
                 "/clinic/by/alias/{$alias}/" . $cityStr,
                 'Center'

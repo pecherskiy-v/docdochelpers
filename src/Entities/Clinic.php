@@ -4,7 +4,7 @@
 namespace Pecherskiy\DocDoc\Entities;
 
 
-class Clinic
+class Clinic extends Entity
 {
     /**
      * @var int
