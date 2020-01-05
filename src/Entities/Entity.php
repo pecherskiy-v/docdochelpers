@@ -27,7 +27,7 @@ abstract class Entity
      *
      * @param array $data
      */
-    public function __construct(array $data)
+    public function __construct(object $data)
     {
         $this->fill($data);
     }
@@ -37,25 +37,26 @@ abstract class Entity
      *
      * @return Entity
      */
-    protected function fill(array $data): Entity
+    protected function fill(object $data): Entity
     {
         foreach ($data as $prop => $value) {
             $type = static::TYPES[$prop] ?? 'string';
+            $propertyName = lcfirst($prop);
 
             switch ($type) {
                 case 'integer':
                 case 'int':
-                    $this->$prop = (int)$value;
+                    $this->$propertyName = (int)$value;
                     break;
                 case 'float':
-                    $this->$prop = (float)$value;
+                    $this->$propertyName = (float)$value;
                     break;
                 case 'boolean':
                 case 'bool':
-                    $this->$prop = (bool)$value;
+                    $this->$propertyName = (bool)$value;
                     break;
                 case 'array':
-                    $this->$prop = array_map(
+                    $this->$propertyName = array_map(
                         static function (string $id) {
                             return (int)$id;
                         },
@@ -63,7 +64,7 @@ abstract class Entity
                     );
                     break;
                 default:
-                    $this->$prop = $value;
+                    $this->$propertyName = $value;
             }
         }
 

@@ -4,7 +4,12 @@ namespace Pecherskiy\DocDoc\Services;
 
 use Pecherskiy\DocDoc\Entities\City;
 use Pecherskiy\DocDoc\Entities\Station;
+use Pecherskiy\DocDoc\Exceptions\MethodIsNotSet;
 use Pecherskiy\DocDoc\Exceptions\ResponseError;
+use Pecherskiy\DocDoc\Exceptions\Unauthorized;
+
+use function array_map;
+use function http_build_query;
 
 /**
  * Class Locations
@@ -15,8 +20,8 @@ class Locations extends AbstractCategory
     /**
      * @return mixed
      * @throws ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws Unauthorized
      */
     public function getCities()
     {
@@ -29,8 +34,8 @@ class Locations extends AbstractCategory
      * @param int $cityID
      * @return mixed
      * @throws ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws Unauthorized
      */
     public function getStreets(int $cityID)
     {
@@ -43,8 +48,8 @@ class Locations extends AbstractCategory
      * @param int $cityID
      * @return mixed
      * @throws ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws Unauthorized
      */
     public function getMetro(int $cityID)
     {
@@ -58,12 +63,12 @@ class Locations extends AbstractCategory
      * @param int|null $areaId
      * @return array|object
      * @throws ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws Unauthorized
      */
     public function getDistricts(int $cityId = null, int $areaId = null)
     {
-        return $this->getOnly('/district/?' . \http_build_query([
+        return $this->getOnly('/district/?' . http_build_query([
             'city' => $cityId,
             'area' => $areaId,
         ]), 'DistrictList');
@@ -77,21 +82,21 @@ class Locations extends AbstractCategory
      * @param string $city
      * @return Station
      * @throws ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws Unauthorized
      */
     public function nearestStationGeo(float $lat, float $lng, string $city = ''): Station
     {
         $query = "/nearestStationGeo/lat/{$lat}/lng/{$lng}/";
-        if ($city !== '') {
+        if ('' !== $city) {
             $query .= "city/{$city}";
         }
         $this->client->setMethod($query);
         $response = $this->client->getJson();
-        if (isset($response['Station'])) {
-            return new Station($response['Station']);
+        if (isset($response->Station)) {
+            return new Station($response->Station);
         }
-        throw new ResponseError($response['message'] ?? 'Response is error');
+        throw new ResponseError($response->message ?? 'Response is error');
     }
 
     /**
@@ -101,8 +106,8 @@ class Locations extends AbstractCategory
      * @param int $limit
      * @return array|object
      * @throws ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws Unauthorized
      */
     public function nearDistricts(int $districtID, int $limit = 50)
     {
@@ -115,12 +120,13 @@ class Locations extends AbstractCategory
      * @param int $stationID
      * @return array|object
      * @throws ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws Unauthorized
      */
     public function nearestStation(int $stationID)
     {
-        return \array_map(function (array $station) {
+        return array_map(
+            static function (object $station) {
             return new Station($station);
         }, $this->getOnly("/nearestStation/id/{$stationID}/", 'StationList'));
     }
@@ -132,8 +138,8 @@ class Locations extends AbstractCategory
      * @param float $lng
      * @return City
      * @throws ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws Unauthorized
      */
     public function detectCity(float $lat, float $lng): City
     {
@@ -143,8 +149,8 @@ class Locations extends AbstractCategory
     /**
      * @return array|object
      * @throws ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws Unauthorized
      */
     public function getMoscowArea()
     {
