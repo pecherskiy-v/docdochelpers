@@ -228,4 +228,18 @@ class Clinic
         ]
      */
     public $schedule;
+
+    /**
+     * @var array
+     * @example [
+            {
+                "Id": "52",
+                "Name": "МРТ (магнитно-резонансная томография) придаточных пазух носа",
+                "Price": "5000",
+                "SpecialPrice": "3500",
+                "DeparturePriceFrom": 10000
+            }
+        ]
+     */
+    public $diagnostics;
 }

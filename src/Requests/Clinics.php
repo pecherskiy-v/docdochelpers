@@ -267,12 +267,12 @@ class Clinics extends AbstractRequest
             'city' => 'cityID',
             'type' => 'clinicType',
         ];
-        $this->client->setMethod("/clinic/count/city/{$this->makeRequestUrl()}");
+        $this->client->setMethod("/clinic/count/{$this->makeRequestUrl()}");
         $response = $this->client->getJson();
-        if (isset($response['Total'])) {
+        if (isset($response->Total)) {
             return $response;
         }
-        throw new ResponseError($response['message'] ?? 'Response is error');
+        throw new ResponseError($response->message ?? 'Response is error');
     }
 
     /**
@@ -304,7 +304,7 @@ class Clinics extends AbstractRequest
      */
     public function slotListByDiagnostic(int $diagnosticId, int $clinicId, Carbon $from, Carbon $to)
     {
-        return $this->getOnly("/slot/list/doctor/{$diagnosticId}/clinic/{$clinicId}/from/{$from->format('Y-m-d')}/to/{$to->format('Y-m-d')}", 'SlotList');
+        return $this->getOnly("/slot/list/diagnostic/{$diagnosticId}/clinic/{$clinicId}/from/{$from->format('Y-m-d')}/to/{$to->format('Y-m-d')}", 'SlotList');
     }
 
     /**

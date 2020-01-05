@@ -2,6 +2,7 @@
 
 namespace Pecherskiy\DocDoc\Tests\Services;
 
+use Carbon\Carbon;
 use Pecherskiy\DocDoc\Entities\Clinic;
 use Pecherskiy\DocDoc\Exceptions\MethodIsNotSet;
 use Pecherskiy\DocDoc\Exceptions\RequiredFieldIsNotSet;
@@ -155,52 +156,92 @@ class ClinicsTest extends AbstractCategoryTest
         static::assertEquals($result->id, $clinic->id);
     }
 
+    /**
+     * @throws RequiredFieldIsNotSet
+     * @throws MethodIsNotSet
+     * @throws ResponseError
+     * @throws Unauthorized
+     */
+    public function testGetReviews(): void
+    {
+        $clinics = new Clinics($this->client);
+        $clinic = $this->getDefaultClinic();
+        $result = $clinics->getReviews($clinic->id);
+        foreach ($result as $review) {
+            static::assertObjectHasAttribute('Id', $review);
+            static::assertObjectHasAttribute('Client', $review);
+            static::assertObjectHasAttribute('RatingQlf', $review);
+            static::assertObjectHasAttribute('RatingAtt', $review);
+            static::assertObjectHasAttribute('RatingRoom', $review);
+            static::assertObjectHasAttribute('Text', $review);
+            static::assertObjectHasAttribute('Date', $review);
+            static::assertObjectHasAttribute('ClinicId', $review);
+            static::assertObjectHasAttribute('DoctorId', $review);
+            static::assertObjectHasAttribute('Answer', $review);
+            static::assertObjectHasAttribute('WaitingTime', $review);
+            static::assertObjectHasAttribute('RatingDoctor', $review);
+            static::assertObjectHasAttribute('RatingClinic', $review);
+            static::assertObjectHasAttribute('TagClinicLocation', $review);
+            static::assertObjectHasAttribute('TagClinicService', $review);
+            static::assertObjectHasAttribute('TagClinicCost', $review);
+            static::assertObjectHasAttribute('TagClinicRecommend', $review);
+            static::assertObjectHasAttribute('TagDoctorAttention', $review);
+            static::assertObjectHasAttribute('TagDoctorExplain', $review);
+            static::assertObjectHasAttribute('TagDoctorQuality', $review);
+            static::assertObjectHasAttribute('TagDoctorRecommend', $review);
+            static::assertObjectHasAttribute('TagDoctorSatisfied', $review);
+            static::assertObjectHasAttribute('ReceptionDate', $review);
+        }
+    }
+
+    /**
+     * @throws MethodIsNotSet
+     * @throws RequiredFieldIsNotSet
+     * @throws ResponseError
+     * @throws Unauthorized
+     */
+    public function testCount(): void
+    {
+        $clinics = new Clinics($this->client);
+        $clinics->city = 1;
+        $clinics->type = [1];
+        $result = $clinics->clinicCount();
+        static::assertObjectHasAttribute('Total', $result);
+        static::assertObjectHasAttribute('ClinicSelected', $result);
+        static::assertIsNumeric($result->Total);
+        static::assertIsNumeric($result->ClinicSelected);
+    }
+
+    /**
+     * @throws MethodIsNotSet
+     * @throws ResponseError
+     * @throws Unauthorized
+     */
+    public function testSlotListDoctor(): void
+    {
+        $clinics = new Clinics($this->client);
+        $from = Carbon::now();
+        $to = Carbon::now()->addDays(3);
+        $result = $clinics->slotListByDoctor(30, 230, $from, $to);
+        static::assertObjectHasAttribute('Id', $result[0]);
+        static::assertObjectHasAttribute('StartTime', $result[0]);
+        static::assertObjectHasAttribute('FinishTime', $result[0]);
+    }
+
     // /**
-    //  * @throws RequiredFieldIsNotSet
     //  * @throws MethodIsNotSet
     //  * @throws ResponseError
     //  * @throws Unauthorized
     //  */
-    // public function testGetReviews(): void
+    // public function testSlotListDiagnostic(): void
     // {
     //     $clinics = new Clinics($this->client);
-    //     $clinic = $this->getDefaultClinic();
-    //     $result = $clinics->getReviews($clinic['Id']);
-    //     foreach ($result as $review) {
-    //         $this->assertArrayHasKey('Id', $review);
-    //         $this->assertArrayHasKey('Client', $review);
-    //         $this->assertArrayHasKey('RatingQlf', $review);
-    //         $this->assertArrayHasKey('RatingAtt', $review);
-    //         $this->assertArrayHasKey('RatingRoom', $review);
-    //         $this->assertArrayHasKey('Text', $review);
-    //         $this->assertArrayHasKey('Date', $review);
-    //         $this->assertArrayHasKey('DoctorId', $review);
-    //         $this->assertArrayHasKey('ClinicId', $review);
-    //         $this->assertArrayHasKey('Answer', $review);
-    //         $this->assertArrayHasKey('WaitingTime', $review);
-    //         $this->assertArrayHasKey('RatingDoctor', $review);
-    //         $this->assertArrayHasKey('RatingClinic', $review);
-    //         $this->assertArrayHasKey('TagClinicLocation', $review);
-    //         $this->assertArrayHasKey('TagClinicService', $review);
-    //         $this->assertArrayHasKey('TagClinicCost', $review);
-    //         $this->assertArrayHasKey('TagClinicRecommend', $review);
-    //         $this->assertArrayHasKey('TagDoctorAttention', $review);
-    //         $this->assertArrayHasKey('TagDoctorExplain', $review);
-    //         $this->assertArrayHasKey('TagDoctorQuality', $review);
-    //         $this->assertArrayHasKey('TagDoctorRecommend', $review);
-    //     }
-    // }
-
-    // /**
-    //  */
-    // public function testCount(): void
-    // {
-    //     $clinics = new Clinics($this->client);
-    //     $result = $clinics->count(1);
-    //     static::assertArrayHasKey('Total', $result);
-    //     static::assertArrayHasKey('ClinicSelected', $result);
-    //     static::assertIsNumeric($result['Total']);
-    //     static::assertIsNumeric($result['ClinicSelected']);
+    //     $from = Carbon::now();
+    //     $to = Carbon::now()->addDays(7);
+    //     $result = $clinics->slotListByDiagnostic(52, 105, $from, $to);
+    //     static::assertObjectHasAttribute('Id', $result[0]);
+    //     static::assertObjectHasAttribute('StartTime', $result[0]);
+    //     static::assertObjectHasAttribute('FinishTime', $result[0]);
     // }
 
     /**
@@ -219,23 +260,6 @@ class ClinicsTest extends AbstractCategoryTest
             static::assertObjectHasAttribute('description', $item);
         }
     }
-
-    // /**
-    //  * @throws MethodIsNotSet
-    //  * @throws ResponseError
-    //  * @throws Unauthorized
-    //  */
-    // public function testGetDiagnostics(): void
-    // {
-    //     $clinics = new Clinics($this->client);
-    //     $diagnostics = $clinics->getDiagnostics();
-    //     $this->assertTrue(count($diagnostics) > 0);
-    //     foreach ($diagnostics as $diagnostic) {
-    //         $this->assertArrayHasKey('Name', $diagnostic);
-    //         $this->assertArrayHasKey('Alias', $diagnostic);
-    //         $this->assertArrayHasKey('SubDiagnosticList', $diagnostic);
-    //     }
-    // }
 
     /**
      * Get first clinic

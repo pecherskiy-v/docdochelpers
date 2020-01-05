@@ -22,10 +22,6 @@ class ClinicResponse
         }
         foreach ($array as $key => $value) {
             $propertyName = lcfirst($key);
-            // var_dump($propertyName);
-            // var_dump($key);
-            // var_dump($value);
-            // var_dump(property_exists(Clinic::class, $propertyName));
             if (property_exists(Clinic::class, $propertyName)) {
                 if (is_int($value)) {
                     $clinic->$propertyName = (int)$value;
