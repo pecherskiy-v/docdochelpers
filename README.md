@@ -2,26 +2,17 @@ Change namespase -> Pecherskiy\DocDoc
 
 # Helper for API DocDoc 1.0.12
 
-#### [Official API Documentation Version 1.0.6](https://pk.docdoc.ru/docs/partner-api.pdf)
-
-#### [Official API Documentation Version 1.0.9](https://dd109.docs.apiary.io/)
-
 #### [Official API Documentation Version 1.0.12](https://dd1012.docs.apiary.io/)
 
-для клиник версия 1.0.6 более не поддерживаеться
 ### Example:
 опция клиента
-assoc=false - вернет объект (установлена по умолчанию)
-assoc=true - вернет ассоциативный массив
 ```
-    $client = new Client($this->docdoc['login'], $this->docdoc['password'], 'production', {assoc=false});
+    $client = new Client($this->docdoc['login'], $this->docdoc['password'], Constants::MOCK_SERVER);
     $clinics = new Clinics($client);
-    $result = $clinics->getClinics(
-        (new ClinicsQueryBuilder())
-            ->setStart(8)
-            ->setCount(1)
-            ->setCity(1)
-    );
+    $clinics->start = 0;
+    $clinics->count = 1;
+    $clinics->city = 1;
+    $result = $clinics->getClinics();
 ```
 
 ### Install
@@ -34,29 +25,18 @@ composer require pecherskiy-v/docdochelpers
 
 ### Example
 
-```
-API_URL = [
-    // предыдущая версия Api
-    'api_1.0.6' => 'https://api.docdoc.ru/public/rest/1.0.6/json/',
-    // сервера доступные для Api 1.0.9
-    'production' => 'https://api.docdoc.ru/public/rest/1.0.9/',
-    'mock_server' => 'https://private-anon-5e031e7a1a-dd109.apiary-mock.com/public/rest/1.0.9',
-    'debugging_proxy' => 'https://private-anon-5e031e7a1a-dd109.apiary-proxy.com/public/rest/1.0.9'
-]
-```
-
 ```php
-use Leyhmann\DocDoc\Client;
-use Leyhmann\DocDoc\Services\Doctors;
-use Leyhmann\DocDoc\Services\Clinics;
+use Pecherskiy\DocDoc\Client;
+use Pecherskiy\DocDoc\Requests\Doctors;
 
-$client = new Client(DOCDOC_LOGIN, DOCDOC_PASSWORD, API_URL = 'production');
-$doctorsService = new Doctors($client);
-$doctors = $doctorsService->all(cityId : int, [count int = 500], [start : int = 1]);
+$client = new Client(DOCDOC_LOGIN, DOCDOC_PASSWORD, API_URL = Constants::MOCK_SERVER);
+$doctorsRequest = new Doctors($client);
+$doctorsRequest->city = 1;
+$doctorsRequest->count = 10;
+$doctorsRequest->start = 0;
+$doctors = $doctorsRequest->all();
 
 foreach($doctors as $doctor) {
     // do something
 }
 ```
-
-### See Services folder for make request
