@@ -2,9 +2,17 @@
 
 namespace Pecherskiy\DocDoc\Tests\Services;
 
+use Pecherskiy\DocDoc\Entities\Doctor;
+use Pecherskiy\DocDoc\Exceptions\CityNumberIncorrect;
 use Pecherskiy\DocDoc\Exceptions\MaximumCount;
-use Pecherskiy\DocDoc\Helpers\Builders\DoctorsQueryBuilder;
-use Pecherskiy\DocDoc\Services\Doctors;
+use Pecherskiy\DocDoc\Exceptions\MethodIsNotSet;
+use Pecherskiy\DocDoc\Exceptions\RequiredFieldIsNotSet;
+use Pecherskiy\DocDoc\Exceptions\ResponseError;
+use Pecherskiy\DocDoc\Exceptions\Unauthorized;
+
+use Pecherskiy\DocDoc\Requests\Doctors;
+
+use function count;
 
 class DoctorsTest extends AbstractCategoryTest
 {
@@ -19,233 +27,221 @@ class DoctorsTest extends AbstractCategoryTest
     protected $specialities;
 
     /**
-     * @throws \Pecherskiy\DocDoc\Exceptions\CityNumberIncorrect
-     * @throws \Pecherskiy\DocDoc\Exceptions\MaximumCount
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws CityNumberIncorrect
+     * @throws MaximumCount
+     * @throws MethodIsNotSet
+     * @throws ResponseError
+     * @throws Unauthorized
+     * @throws RequiredFieldIsNotSet
      */
     public function testAllMaxCount(): void
     {
         $this->expectException(MaximumCount::class);
         $doctors = new Doctors($this->client);
-        $doctors->all(1, 501);
+        $doctors->city = 1;
+        $doctors->count = 501;
+        $doctors->all();
     }
 
     /**
+     * @throws CityNumberIncorrect
      * @throws MaximumCount
-     * @throws \Pecherskiy\DocDoc\Exceptions\CityNumberIncorrect
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws RequiredFieldIsNotSet
+     * @throws ResponseError
+     * @throws Unauthorized
      */
     public function testAll(): void
     {
         $doctors = new Doctors($this->client);
-        $result = $doctors->all(1, 10);
-        $this->assertCount(10, $result['DoctorList']);
-        foreach ($result['DoctorList'] as $doctor) {
-            $this->assertArrayHasKey('Id', $doctor);
+        $doctors->city = 1;
+        $doctors->count = 10;
+        $result = $doctors->all();
+        static::assertCount(10, $result->DoctorList);
+        foreach ($result->DoctorList as $doctor) {
+            static::assertObjectHasAttribute('id', $doctor);
         }
     }
 
     /**
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\RequiredFieldIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws RequiredFieldIsNotSet
+     * @throws ResponseError
+     * @throws Unauthorized
      */
     public function testGetDoctors(): void
     {
         $doctors = new Doctors($this->client);
-        $result = $doctors->getDoctors(
-            (new DoctorsQueryBuilder())
-                ->setCity(1)
-                ->setSpeciality($this->getSpecialitiesList()[0]['Id'])
-                ->setStations([1, 2])
-                ->setCount(10)
-        );
-        $this->assertArrayHasKey('Total', $result);
-        $this->assertArrayHasKey('DoctorList', $result);
-        foreach ($result['DoctorList'] as $doctor) {
-            $this->assertArrayHasKey('Id', $doctor);
-            $this->assertArrayHasKey('Name', $doctor);
-            $this->assertArrayHasKey('Rating', $doctor);
-            $this->assertArrayHasKey('Sex', $doctor);
-            $this->assertArrayHasKey('Img', $doctor);
-            $this->assertArrayHasKey('AddPhoneNumber', $doctor);
-            $this->assertArrayHasKey('Category', $doctor);
-            $this->assertArrayHasKey('Degree', $doctor);
-            $this->assertArrayHasKey('Rank', $doctor);
-            $this->assertArrayHasKey('Description', $doctor);
-            $this->assertArrayHasKey('ExperienceYear', $doctor);
-            $this->assertArrayHasKey('Price', $doctor);
-            $this->assertArrayHasKey('SpecialPrice', $doctor);
-            $this->assertArrayHasKey('Departure', $doctor);
-            $this->assertArrayHasKey('Clinics', $doctor);
-            $this->assertArrayHasKey('Alias', $doctor);
-            $this->assertArrayHasKey('Specialities', $doctor);
-            $this->assertArrayHasKey('Stations', $doctor);
-            $this->assertArrayHasKey('BookingClinics', $doctor);
-            $this->assertArrayHasKey('isActive', $doctor);
-            $this->assertArrayHasKey('TextAbout', $doctor);
-            $this->assertArrayHasKey('InternalRating', $doctor);
-            $this->assertArrayHasKey('OpinionCount', $doctor);
-            $this->assertArrayHasKey('Extra', $doctor);
-            $this->assertArrayHasKey('KidsReception', $doctor);
-            $this->assertArrayHasKey('ClinicsInfo', $doctor);
+        $doctors->city = 1;
+        $doctors->stations = [1, 2];
+        $doctors->count = 10;
+        $doctors->speciality = $this->getSpecialitiesList()[0]->Id;
+        $result = $doctors->getDoctors(false);
+
+        static::assertObjectHasAttribute('Total', $result);
+        static::assertObjectHasAttribute('DoctorList', $result);
+        foreach ($result->DoctorList as $doctor) {
+            static::assertObjectHasAttribute('id', $doctor);
+            static::assertObjectHasAttribute('name', $doctor);
+            static::assertObjectHasAttribute('rating', $doctor);
+            static::assertObjectHasAttribute('sex', $doctor);
+            static::assertObjectHasAttribute('img', $doctor);
+            static::assertObjectHasAttribute('addPhoneNumber', $doctor);
+            static::assertObjectHasAttribute('category', $doctor);
+            static::assertObjectHasAttribute('degree', $doctor);
+            static::assertObjectHasAttribute('rank', $doctor);
+            static::assertObjectHasAttribute('description', $doctor);
+            static::assertObjectHasAttribute('experienceYear', $doctor);
+            static::assertObjectHasAttribute('price', $doctor);
+            static::assertObjectHasAttribute('specialPrice', $doctor);
+            static::assertObjectHasAttribute('departure', $doctor);
+            static::assertObjectHasAttribute('clinics', $doctor);
+            static::assertObjectHasAttribute('alias', $doctor);
+            static::assertObjectHasAttribute('specialities', $doctor);
+            static::assertObjectHasAttribute('stations', $doctor);
+            static::assertObjectHasAttribute('bookingClinics', $doctor);
+            static::assertObjectHasAttribute('isActive', $doctor);
+            static::assertObjectHasAttribute('textAbout', $doctor);
+            static::assertObjectHasAttribute('internalRating', $doctor);
+            static::assertObjectHasAttribute('opinionCount', $doctor);
+            static::assertObjectHasAttribute('extra', $doctor);
+            static::assertObjectHasAttribute('kidsReception', $doctor);
+            static::assertObjectHasAttribute('clinicsInfo', $doctor);
         }
     }
 
     /**
+     * @throws CityNumberIncorrect
      * @throws MaximumCount
-     * @throws \Pecherskiy\DocDoc\Exceptions\CityNumberIncorrect
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws RequiredFieldIsNotSet
+     * @throws ResponseError
+     * @throws Unauthorized
      */
     public function testFind(): void
     {
         $doctors = new Doctors($this->client);
         $doctor = $this->getDefaultDoctor();
-        $result = $doctors->find($doctor['Id']);
-        $this->assertEquals($doctor['Id'], $result['Id']);
+        $result = $doctors->find($doctor->id);
+        static::assertEquals($doctor->id, $result->id);
     }
 
     /**
+     * @throws CityNumberIncorrect
      * @throws MaximumCount
-     * @throws \Pecherskiy\DocDoc\Exceptions\CityNumberIncorrect
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws RequiredFieldIsNotSet
+     * @throws ResponseError
+     * @throws Unauthorized
      */
     public function testFindByAlias(): void
     {
         $doctors = new Doctors($this->client);
         $doctor = $this->getDefaultDoctor();
-        $result = $doctors->findByAlias($doctor['Alias']);
-        $this->assertEquals($doctor['Id'], $result['Id']);
+        $result = $doctors->findByAlias($doctor->alias);
+        static::assertEquals($doctor->id, $result->id);
     }
 
     /**
+     * @throws CityNumberIncorrect
      * @throws MaximumCount
-     * @throws \Pecherskiy\DocDoc\Exceptions\CityNumberIncorrect
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws RequiredFieldIsNotSet
+     * @throws ResponseError
+     * @throws Unauthorized
      */
     public function testGetReview(): void
     {
         $doctors = new Doctors($this->client);
         $doctor = $this->getDefaultDoctor();
-        $result = $doctors->getReview($doctor['Id']);
+        $result = $doctors->getReviews($doctor->id);
         foreach ($result as $review) {
-            $this->assertArrayHasKey('Id', $review);
-            $this->assertArrayHasKey('Client', $review);
-            $this->assertArrayHasKey('RatingQlf', $review);
-            $this->assertArrayHasKey('RatingAtt', $review);
-            $this->assertArrayHasKey('RatingRoom', $review);
-            $this->assertArrayHasKey('Text', $review);
-            $this->assertArrayHasKey('Date', $review);
-            $this->assertArrayHasKey('DoctorId', $review);
-            $this->assertArrayHasKey('ClinicId', $review);
-            $this->assertArrayHasKey('Answer', $review);
-            $this->assertArrayHasKey('WaitingTime', $review);
-            $this->assertArrayHasKey('RatingDoctor', $review);
-            $this->assertArrayHasKey('RatingClinic', $review);
-            $this->assertArrayHasKey('TagClinicLocation', $review);
-            $this->assertArrayHasKey('TagClinicService', $review);
-            $this->assertArrayHasKey('TagClinicCost', $review);
-            $this->assertArrayHasKey('TagClinicRecommend', $review);
-            $this->assertArrayHasKey('TagDoctorAttention', $review);
-            $this->assertArrayHasKey('TagDoctorExplain', $review);
-            $this->assertArrayHasKey('TagDoctorQuality', $review);
-            $this->assertArrayHasKey('TagDoctorRecommend', $review);
+            static::assertObjectHasAttribute('Id', $review);
+            static::assertObjectHasAttribute('Client', $review);
+            static::assertObjectHasAttribute('RatingQlf', $review);
+            static::assertObjectHasAttribute('RatingAtt', $review);
+            static::assertObjectHasAttribute('RatingRoom', $review);
+            static::assertObjectHasAttribute('Text', $review);
+            static::assertObjectHasAttribute('Date', $review);
+            static::assertObjectHasAttribute('DoctorId', $review);
+            static::assertObjectHasAttribute('ClinicId', $review);
+            static::assertObjectHasAttribute('Answer', $review);
+            static::assertObjectHasAttribute('WaitingTime', $review);
+            static::assertObjectHasAttribute('RatingDoctor', $review);
+            static::assertObjectHasAttribute('RatingClinic', $review);
+            static::assertObjectHasAttribute('TagClinicLocation', $review);
+            static::assertObjectHasAttribute('TagClinicService', $review);
+            static::assertObjectHasAttribute('TagClinicCost', $review);
+            static::assertObjectHasAttribute('TagClinicRecommend', $review);
+            static::assertObjectHasAttribute('TagDoctorAttention', $review);
+            static::assertObjectHasAttribute('TagDoctorExplain', $review);
+            static::assertObjectHasAttribute('TagDoctorQuality', $review);
+            static::assertObjectHasAttribute('TagDoctorRecommend', $review);
         }
     }
 
     /**
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws ResponseError
+     * @throws Unauthorized
      */
     public function testGetSpecialities(): void
     {
         $doctors = new Doctors($this->client);
         $result = $doctors->getSpecialities(1);
-        $this->assertTrue(\count($result) > 0);
+        static::assertTrue(count($result) > 0);
     }
 
     /**
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws ResponseError
+     * @throws Unauthorized
      */
     public function testGetServices(): void
     {
         $doctors = new Doctors($this->client);
         $result = $doctors->getServices();
-        $this->assertTrue(\count($result) > 0);
+        static::assertTrue(count($result) > 0);
         foreach ($result as $service) {
-            $this->assertArrayHasKey('Id', $service);
-            $this->assertArrayHasKey('Name', $service);
-            $this->assertArrayHasKey('Lft', $service);
-            $this->assertArrayHasKey('Rgt', $service);
-            $this->assertArrayHasKey('Depth', $service);
-            $this->assertArrayHasKey('SectorId', $service);
-            $this->assertArrayHasKey('DiagnosticaId', $service);
+            static::assertObjectHasAttribute('Id', $service);
+            static::assertObjectHasAttribute('Name', $service);
+            static::assertObjectHasAttribute('Lft', $service);
+            static::assertObjectHasAttribute('Rgt', $service);
+            static::assertObjectHasAttribute('Depth', $service);
+            static::assertObjectHasAttribute('SectorId', $service);
+            static::assertObjectHasAttribute('DiagnosticaId', $service);
         }
     }
 
     /**
+     * @return Doctor
+     * @throws CityNumberIncorrect
      * @throws MaximumCount
-     * @throws \Pecherskiy\DocDoc\Exceptions\CityNumberIncorrect
-     * @throws \Pecherskiy\DocDoc\Exceptions\InvalidArgument
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws RequiredFieldIsNotSet
+     * @throws ResponseError
+     * @throws Unauthorized
      */
-    public function testGetSlots(): void
+    protected function getDefaultDoctor(): Doctor
     {
-        $doctors = new Doctors($this->client);
-        $doctor = $this->getDefaultDoctor();
-        $startDate = new \DateTime();
-        $finishDate = (new \DateTime())->modify('+3 days');
-        $result = $doctors->getSlots($doctor['Id'], $doctor['Clinics'][0], $startDate, $finishDate);
-        $this->assertIsArray($result);
-        foreach ($result as $slot) {
-            $this->assertArrayHasKey('Id', $slot);
-            $this->assertArrayHasKey('StartTime', $slot);
-            $this->assertArrayHasKey('FinishTime', $slot);
-        }
-    }
-
-    /**
-     * @return array
-     * @throws MaximumCount
-     * @throws \Pecherskiy\DocDoc\Exceptions\CityNumberIncorrect
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
-     */
-    protected function getDefaultDoctor(): array
-    {
-        if ($this->doctor === null) {
+        if (null === $this->doctor) {
             $doctors = new Doctors($this->client);
-            $this->doctor = $doctors->all(1, 1)['DoctorList'][0];
+            $doctors->city = 1;
+            $doctors->count = 1;
+            $this->doctor = $doctors->all()->DoctorList[0];
         }
         return $this->doctor;
     }
 
     /**
      * @return array
-     * @throws \Pecherskiy\DocDoc\Exceptions\MethodIsNotSet
-     * @throws \Pecherskiy\DocDoc\Exceptions\ResponseError
-     * @throws \Pecherskiy\DocDoc\Exceptions\Unauthorized
+     * @throws MethodIsNotSet
+     * @throws ResponseError
+     * @throws Unauthorized
      */
     protected function getSpecialitiesList(): array
     {
-        if ($this->specialities === null) {
+        if (null === $this->specialities) {
             $doctors = new Doctors($this->client);
             $this->specialities = $doctors->getSpecialities(1);
         }

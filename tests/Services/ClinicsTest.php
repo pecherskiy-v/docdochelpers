@@ -2,7 +2,6 @@
 
 namespace Pecherskiy\DocDoc\Tests\Services;
 
-use Carbon\Carbon;
 use Pecherskiy\DocDoc\Entities\Clinic;
 use Pecherskiy\DocDoc\Exceptions\MethodIsNotSet;
 use Pecherskiy\DocDoc\Exceptions\RequiredFieldIsNotSet;
@@ -211,38 +210,6 @@ class ClinicsTest extends AbstractCategoryTest
         static::assertIsNumeric($result->Total);
         static::assertIsNumeric($result->ClinicSelected);
     }
-
-    /**
-     * @throws MethodIsNotSet
-     * @throws ResponseError
-     * @throws Unauthorized
-     */
-    public function testSlotListDoctor(): void
-    {
-        $clinics = new Clinics($this->client);
-        $from = Carbon::now();
-        $to = Carbon::now()->addDays(3);
-        $result = $clinics->slotListByDoctor(30, 230, $from, $to);
-        static::assertObjectHasAttribute('Id', $result[0]);
-        static::assertObjectHasAttribute('StartTime', $result[0]);
-        static::assertObjectHasAttribute('FinishTime', $result[0]);
-    }
-
-    // /**
-    //  * @throws MethodIsNotSet
-    //  * @throws ResponseError
-    //  * @throws Unauthorized
-    //  */
-    // public function testSlotListDiagnostic(): void
-    // {
-    //     $clinics = new Clinics($this->client);
-    //     $from = Carbon::now();
-    //     $to = Carbon::now()->addDays(7);
-    //     $result = $clinics->slotListByDiagnostic(52, 105, $from, $to);
-    //     static::assertObjectHasAttribute('Id', $result[0]);
-    //     static::assertObjectHasAttribute('StartTime', $result[0]);
-    //     static::assertObjectHasAttribute('FinishTime', $result[0]);
-    // }
 
     /**
      * @throws RequiredFieldIsNotSet
