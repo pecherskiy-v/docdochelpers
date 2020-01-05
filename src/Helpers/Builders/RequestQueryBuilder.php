@@ -14,6 +14,14 @@ use DateTime;
 class RequestQueryBuilder extends QueryBuilder
 {
     /**
+     * List of required fields
+     */
+    public const REQUIRED_FIELDS = [
+        'city',
+        'phone',
+    ];
+
+    /**
      * @var int
      */
     protected $city = 0;

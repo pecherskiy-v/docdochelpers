@@ -20,7 +20,7 @@ abstract class AbstractCategoryTest extends TestCase
         $this->client = new Client(
             getenv('DOCDOC_LOGIN'),
             getenv('DOCDOC_PASSWORD'),
-            Constants::DEBUG_SERVER
+            Constants::MOCK_SERVER
         );
     }
 }
