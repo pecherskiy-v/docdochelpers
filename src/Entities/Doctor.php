@@ -23,6 +23,16 @@ class Doctor extends Entity
     public $name;
 
     /**
+     * Фамилия врача
+     * required
+     *
+     * @var string
+     *
+     * @example Иванов
+     */
+    public $surname;
+
+    /**
      * Алиас для ЧПУ
      * required
      *
@@ -50,7 +60,7 @@ class Doctor extends Entity
      * Пол специалиста
      * required
      *
-     * @var int
+     * enum
      */
     public $sex;
 
@@ -252,4 +262,73 @@ class Doctor extends Entity
      * @var bool
      */
     public $isExclusivePrice;
+
+    /**
+     * текстовое описание образования
+     * required
+     *
+     * @var string
+     * @example Витебский государственный...
+     */
+    public $textEducation;
+
+    /**
+     * текстовое описание стажа
+     * required
+     *
+     * @var string
+     * @example Эндокринолог, "Городская поликлиника...
+     */
+    public $textExperience;
+
+    /**
+     * текстовое описание пройденных курсов
+     * required
+     *
+     * @var string
+     * @example Общая терапевтическая билиопанкреатология
+     */
+    public $textCourse;
+
+    /**
+     * текстовое описание специализации
+     * required
+     *
+     * @var string
+     *
+     * @example Профилактика и лечение
+     */
+    public $textSpec;
+
+    /**
+     * текстовое описание присутствия в сообществах
+     * required
+     *
+     * @var string
+     * @example Член Всероссийской ассоциации онкологов
+     */
+    public $textAssociation;
+
+    /**
+     * Врач высшей категории. Кандидат медицинских наук.
+     * required
+     *
+     * @var string
+     * @example Научное звание
+     */
+    public $textDegree;
+
+    /**
+     * Достижения врача
+     *
+     * @var object
+     */
+    public $achievements;
+
+    /**
+     * Болезни, на которых специализируется врач
+     *
+     * @var array
+     * */
+    public $specialization;
 }
