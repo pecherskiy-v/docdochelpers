@@ -248,12 +248,12 @@ class Doctors extends AbstractRequest
      *
      * @param int $id
      *
-     * @return mixed
+     * @return Doctor
      * @throws MethodIsNotSet
      * @throws ResponseError
      * @throws Unauthorized
      */
-    public function find(int $id)
+    public function find(int $id) : Doctor
     {
         return new Doctor($this->getFirst("/doctor/{$id}/", 'Doctor'));
     }
