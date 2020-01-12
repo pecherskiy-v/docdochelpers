@@ -200,17 +200,22 @@ class Clinic extends Entity
 // },
 
     /**
-     * @var array
-     * @example [
+     * @var object
+     *
+     * @example
+     * "Total": 2,
+     * "ServiceList": [
             {
                 "ServiceId": "13",
                 "ServiceName": "Консультация андролога первичная",
-                "Price": "500"
+                "Price": "500",
+                "SpecialPrice": "400"
             },
             {
                 "ServiceId": "1642",
                 "ServiceName": "Консультация гинеколога первичная",
-                "Price": "1200"
+                "Price": "1200",
+                "SpecialPrice": "400"
             }
         ]
      */
